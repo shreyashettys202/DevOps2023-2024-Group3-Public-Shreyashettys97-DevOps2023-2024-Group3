@@ -1,5 +1,7 @@
 # ProjTemplate DevOps2023_2024
-MScDevOps Assign - Group <<>>
+MScDevOps Assign - Group 3
+
+Wednesdays Wicked Adventure
 
 # Table of Contents
     Preamble
@@ -31,16 +33,24 @@ Our product will be delivered using an Agile methodology that embraces the DevOp
 
 # Scrum Master
 <<list week number, student name>>
-Week 1, John Doe
-Week 2, Jane Doe
+Week 1, Jolly Kannampuzha
+Week 2, Jolly Kannampuzha
 Rotating scrum master so that everyone gets to experience the role once.
 
 # Product Owner
 <<list week number, student name>>
+Week 1, Nayana Purohit Nagaraj
+Week 2, Nayana Purohit Nagaraj
 Rotating product owner so that everyone gets to experience the role once.
 
 # Team Members
 <<list team member names here>>
+Jolly Kannampuzha
+Nayana Purohit Nagaraj
+Abhishek Sharma
+Riya Devikar
+PAVAN KALYAN VARIKOLU
+Shreya Shantharama Shetty
 
 # Project Deadline
 Thursday 4th April at midnight
