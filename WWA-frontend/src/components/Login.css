@@ -1,0 +1,20 @@
+.card-width {
+    width: 18rem;
+}
+.login-title {
+    padding: 10px 0;
+    font-size: 20px;
+}
+.pink-backgroud {
+    background-color: #e85a72 !important;
+    border-color: #e85a72 !important;
+}
+.large-button {
+    width: 100%;
+}
+.custom-padding {
+    padding: 1rem 0 10px 1.5rem
+}
+.custom-margin {
+    margin-top: 5%;
+}
