@@ -1,6 +1,7 @@
 // /comoponent/parks/ThrillvillePage.js
 import React, { useState } from 'react';
 
+
 const ThrillvillePage = ({ setActiveTemplate, onSave }) => {
 
     const [termsCheck1, setTermsCheck1] = useState(false);
