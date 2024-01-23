@@ -1,0 +1,42 @@
+
+  body, html {
+    height: 100%;
+  }
+  
+  .parent {
+    /* The image used */
+    background-image: url("../assets/bg_image1.jpeg");
+  
+    /* Full height */
+    height: 100% !important;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: yellow;
+  }
+  .parent input {
+    color: yellow;
+    width: 100%;
+}
+  .dark-bg {
+      background-color: black !important;
+      border: black !important;
+  }
+  .custom-padding {
+      padding-left: 18% !important;
+  }
+  .input-number {
+      padding: 0px !important;
+      max-width: 15%;
+      text-align: center;
+      color: black !important;
+  }
+  .number-label {
+    margin-right: 15%;
+    padding-top: 3%;
+  }
+  .btn-custom {
+      color: yellow !important;
+  }
