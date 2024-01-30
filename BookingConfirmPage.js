@@ -28,7 +28,7 @@ const BookingConfirmPage = ({ setActiveTemplate, bookingNumber }) => {
     return (
         <div className="container-fluid booking-heading text-warning">
             <div className="row m-4">
-                <h1 className="h1">BOOKING IS SUCCESSFUL</h1>
+                <h1 className="h1">BOOKING IS SUCCESSFUL.</h1>
             </div>
 
             <div className="container booking-container my-5">
