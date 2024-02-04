@@ -32,23 +32,39 @@ Our product will be delivered using an Agile methodology that embraces the DevOp
 
 # Scrum Master
 <<list week number, student name>>
-Week 1, Jolly Kannampuzha
-Week 2, Jolly Kannampuzha
+Week 1,  Jolly Kannampuzha
+Week 2,  Jolly Kannampuzha
+Week 3, 
+Week 4, 
+Week 5,  Abhishek Sharma
+Week 6,  Abhishek Sharma
+Week 7,  Shreya Shantharama Shetty
+Week 8,  Shreya Shantharama Shetty
+Week 9,  Pavan Kalyan Varikolu
+Week 10, Pavan Kalyan Varikolu
 Rotating scrum master so that everyone gets to experience the role once.
 
 # Product Owner
 <<list week number, student name>>
-Week 1, Nayana Purohit Nagaraj
-Week 2, Nayana Purohit Nagaraj
+Week 1,  Nayana Purohit Nagaraj
+Week 2,  Nayana Purohit Nagaraj
+Week 3,  
+Week 4,  
+Week 5,  Pavan Kalyan Varikolu
+Week 6,  Pavan Kalyan Varikolu
+Week 7,  Riya Devikar
+Week 8,  Riya Devikar
+Week 9,  Jolly Kannampuzha
+Week 10, Jolly Kannampuzha
 Rotating product owner so that everyone gets to experience the role once.
 
 # Team Members
 <<list team member names here>>
+Abhishek Sharma
 Jolly Kannampuzha
 Nayana Purohit Nagaraj
-Abhishek Sharma
-Riya Devikar
 PAVAN KALYAN VARIKOLU
+Riya Devikar
 Shreya Shantharama Shetty
 
 # Project Deadline
@@ -69,7 +85,7 @@ Regex for cleansing and validation of data before sending to the database.
 
 # Useful Links
  - Project Slack: https://atudevops.slack.com
- - GitHub: <<staff member's github repo for the student project>>
+ - GitHub: https://github.com/shreyashettys202/DevOps2023-2024-Group3
 
 # More Information
 For more information visit our other sections
