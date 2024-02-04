@@ -21,7 +21,7 @@ const BookingConfirmPage = ({ setActiveTemplate, bookingNumber }) => {
             navigate('/');
             window.location.reload();
         } catch (error) {
-            console.error('Logout failed.', error);
+            console.error('Logout failed', error);
         }
     };
 
