@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 swaggerConfig(app);
 
 app.use(require('./routes/auth'));
-app.use(require('./routes/adminauth'));
 
 
 app.get('/', (req, res) => {
