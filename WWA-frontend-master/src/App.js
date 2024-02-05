@@ -3,9 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AdminPage from "./pages/AdminPage";
 import ViewBookingsPage from "./pages/ViewBookingsPage";
-import AdminBookingsPage from "./pages/AdminBookingsPage";
 import Errorpage from "./pages/ErrorPage";
 
 
