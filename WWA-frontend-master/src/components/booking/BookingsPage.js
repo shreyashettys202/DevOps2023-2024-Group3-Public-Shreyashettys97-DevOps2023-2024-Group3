@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-const BookingsPage = () => {
+const BookingsPage = ({ email }) => {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
 
         const checkBooking = async () => {
             try {
-                const response = await axios.post("/bookings/my");
+                const response = await axios.post("/mybookings", { email });
                 setBookings(response.data.bookings);
 
             } catch (error) {
@@ -19,7 +19,7 @@ const BookingsPage = () => {
         }
 
         checkBooking();
-    });
+    }, [email]);
 
     return (
         <>
@@ -33,7 +33,7 @@ const BookingsPage = () => {
                             <div>
                                 <div className='card bg-dark m-5 p-3'>
                                     <h2 className='text-danger'>No Booking Found!</h2>
-                                    <p className='text-warning'>with your Email</p>
+                                    <p className='text-warning'>for Email: {email}</p>
                                 </div>
                             </div> :
                             <div>
