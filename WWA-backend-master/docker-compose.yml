@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  # MongoDB service for the backend
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_DB: ${MONGO_DB}
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db  # Volume configuration for MongoDB data
+    networks:
+      - mern-network
+
+  # Node.js backend service
+  backend:
+    image: pavanvarikolu/wwabackend:v1.1.1
+    container_name: wwa-api
+    command: npm start
+    depends_on:
+      - mongodb
+    ports:
+      - 4000:5000
+    environment:
+      MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017/${MONGO_DB}
+    networks:
+      - mern-network
+      
+  # frontend service
+  frontend:
+    image: pavanvarikolu/wwafrontend:v1.1.1
+    container_name: frontend-container
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    driver: bridge
+
+volumes:
+  mongo-data:  # Define a named volume for MongoDB data persistence
