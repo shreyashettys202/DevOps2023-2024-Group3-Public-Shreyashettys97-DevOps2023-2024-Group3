@@ -8,7 +8,7 @@ on:
     types:
       - "opened"
 jobs:
-  Running_backend:
+  WWA-backend-master:
      runs-on: ubuntu-latest
      steps:
       - name: getting code
@@ -23,7 +23,7 @@ jobs:
           sudo npm i
           sudo npm run test  
 
-  building_frontend:
+  WWA-frontend-master:
    # needs: Running_backend
     runs-on: ubuntu-latest
     steps:
@@ -39,25 +39,7 @@ jobs:
           npm install 
           sudo npm run build 
 
-  Automated_document:
-     # needs: [Running_backend, building_frontend]
-      runs-on: ubuntu-latest
-      steps:
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Build
-        uses: andstor/jsdoc-action@v1  
-
-      - name: Generate Documentations
-        run: |
-          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-          npm install -g jsdoc
-          npm install 
-          npm run docs
-
-  Running_docker:
+  Building_docker:
     runs-on: ubuntu-latest
    # runs-on: self-hosted
     steps:
