@@ -39,7 +39,7 @@ jobs:
           npm install 
           sudo npm run build 
 
-  Building_docker:
+  Running_docker:
     runs-on: ubuntu-latest
    # runs-on: self-hosted
     steps:
