@@ -1,0 +1,88 @@
+name: frontend-master workflow
+
+on: 
+  push:
+    branches:
+      - dev-L00171125-Abhishek-DGW-132
+  pull_request:
+    types:
+      - "opened"
+jobs:
+  Running_backend:
+     runs-on: ubuntu-latest
+     steps:
+      - name: getting codes
+        uses: actions/checkout@v4
+      - name: installing nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: running code
+        run: |
+          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
+          sudo npm i
+          sudo npm run test  
+
+  building_frontend:
+   # needs: Running_backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: getting code
+        uses: actions/checkout@v4
+      - name: installing nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: installing  dependencies
+        run: |
+          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+          npm install 
+          sudo npm run build 
+
+  Automated_document:
+     # needs: [Running_backend, building_frontend]
+      runs-on: ubuntu-latest
+      steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build
+        uses: andstor/jsdoc-action@v1  
+
+      - name: Generate Documentations
+        run: |
+          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+          npm install -g jsdoc
+          npm install 
+          npm run docs
+
+  Running_docker:
+    runs-on: self-hosted
+    steps:
+      - name: pulling image from docker hub 
+        run: docker pull pavanvarikolu/wwafrontend:v1.0
+
+      - name: Deleting old contanier 
+        run: docker rm -f wwafrontendapp
+
+      - name: building container
+        run: docker run --name wwafrontendapp -p 3000:3000 -d pavanvarikolu/wwafrontend:v1.0
+
+  Running_Docker_backend:
+    runs-on: self-hosted
+    needs : Running_docker
+    steps:
+      - name: pulling image from docker hub 
+        run: docker pull pavanvarikolu/wwabackend:v1.1.1
+
+      - name: Deleting old contanier 
+        run: docker rm -f wwabackend
+
+      - name: building docker backend
+        run: docker run --name wwabackend -p 5000:5000 -d pavanvarikolu/wwabackend:v1.1.1
+
+
+
+
+   
