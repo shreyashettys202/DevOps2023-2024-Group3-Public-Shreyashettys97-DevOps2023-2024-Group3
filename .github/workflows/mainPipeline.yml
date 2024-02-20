@@ -71,7 +71,7 @@ jobs:
 
   Running_Docker_backend:
     runs-on: self-hosted
-    needs : Running_docker
+    needs : Running_docker_image
     steps:
       - name: pulling image from docker hub 
         run: docker pull pavanvarikolu/wwabackend:v1.1.1
