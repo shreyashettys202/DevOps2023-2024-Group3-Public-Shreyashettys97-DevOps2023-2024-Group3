@@ -6,8 +6,6 @@ const { SignupController, LoginController, ForgotController, LogoutController } 
 const { BookTicketController, MyBookingController } = require('../controllers/bookingController');
 require('../db/conn');
 
-
-
 /**
  * @swagger
  * tags:
@@ -375,6 +373,5 @@ router.post('/bookticket', BookTicketController);
  *               message: Internal Server Error
  */
 router.post("/mybookings", MyBookingController);
-
 
 module.exports = router;
