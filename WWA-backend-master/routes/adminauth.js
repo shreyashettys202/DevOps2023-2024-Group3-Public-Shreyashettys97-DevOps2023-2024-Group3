@@ -7,7 +7,6 @@ const { AdminBookTicketController, AdminBookingsController, AdminEditTicketContr
 require('../db/conn');
 const adminMail = process.env.ADMIN_MAIL;
 
-
 // ADmin Signup route
 /**
  * @swagger
@@ -195,9 +194,6 @@ router.post('/admin/forgotpassword', AdminForgotController);
  */
 router.post('/admin/logout', AdminLogoutController);
 
-
-
-
 //admin/authentication route
 /**
  * @swagger
@@ -231,9 +227,6 @@ router.post('/admin/authenticate', Authenticate, (req, res) => {
     }
     res.json({ message: 'Secure route accessed successfully!', email: email });
 });
-
-
-
 
 //admin/bookticket Route
 /**
@@ -416,7 +409,5 @@ router.post("/admin/editticket", AdminEditTicketController);
  *               message: Internal Server Error
  */
 router.post('/admin/deletebooking', AdminDeleteBookingController);
-
-
 
 module.exports = router;
