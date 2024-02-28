@@ -25,7 +25,7 @@ jobs:
 
   WWA-frontend-master:
    # needs: Running_backend
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: getting code
         uses: actions/checkout@v4
