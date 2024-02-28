@@ -39,10 +39,14 @@ jobs:
           npm install 
           sudo npm run build 
       - name: Generate Doc
-        run: npm run docs
+        run: |
+           cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+           npm run docs
 
       - name: Build
-        run: npm run build 
+        run: |
+           cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+           npm run build 
 
   Build_docker_image:
     runs-on: ubuntu-latest
