@@ -25,7 +25,7 @@ jobs:
 
   WWA-frontend-master:
    # needs: Running_backend
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: getting code
         uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
           npm install 
           npm install -g jsdoc
           npm run docs
-          sudo npm run build 
+          npm run build 
      
   Build_docker_image:
     runs-on: ubuntu-latest
