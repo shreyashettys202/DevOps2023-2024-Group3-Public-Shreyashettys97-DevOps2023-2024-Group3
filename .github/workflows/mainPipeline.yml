@@ -33,11 +33,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: installing  dependencies
+      - name: installing  dependency
         run: |
           cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
           npm install 
           sudo npm run build 
+      - name: Generate Doc
+        run: npm run docs
+
+      - name: Build
+        run: npm run build 
 
   Build_docker_image:
     runs-on: ubuntu-latest
