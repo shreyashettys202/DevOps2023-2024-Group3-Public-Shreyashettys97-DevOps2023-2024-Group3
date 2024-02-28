@@ -38,6 +38,7 @@ jobs:
           cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
           npm install 
           npm install -g jsdoc
+          jsdoc -c jsdoc.json
           npm run docs
           npm run build 
      
