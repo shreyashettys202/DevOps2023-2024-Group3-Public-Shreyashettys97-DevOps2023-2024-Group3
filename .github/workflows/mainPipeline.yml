@@ -54,7 +54,7 @@ jobs:
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
          docker build -t wwafrontend . 
       - name: Publish Image to docker Hub
-        run: docker push  /wwafrontend:latest 
+        run: docker push wwafrontend:latest 
 
   Pulling_docker_image:
     runs-on: self-hosted
