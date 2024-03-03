@@ -27,7 +27,7 @@ jobs:
          docker build -t wwag3/wednesdaywickedadventures:backend . 
       - name: Publish Image to docker Hub
         run: |
-         docker push wwag3/wednesdaywickedadventures:latest
+          docker push wwag3/wednesdaywickedadventures:latest
           docker push wwag3/wednesdaywickedadventures:backend
 
   Pulling_docker_image:
@@ -35,16 +35,21 @@ jobs:
     needs: Build_docker_FrontendImage
     steps:
       - name: pulling image from docker hub 
-        run: sudo docker pull wwag3/wednesdaywickedadventures:latest
+        run: |
+         sudo docker pull wwag3/wednesdaywickedadventures:backend
+         sudo docker pull wwag3/wednesdaywickedadventures:latest
 
       - name: Deleting old contanier 
-        run: sudo docker rm -f wwafrontendapp
+        run: |
+         sudo docker rm -f wwafrontendapp
+         sudo docker rm -f wwabackendapp
 
-      - name: building container
+      - name: building backend container
+        run: sudo docker run --name wwabackendapp -p 5000:5000 -d  wwag3/wednesdaywickedadventures:backend
+
+
+      - name: building frontend container
         run: sudo docker run --name wwafrontendapp -p 3000:3000 -d  wwag3/wednesdaywickedadventures:latest
-
-      - name: Deleting old contanier 
-        run: sudo docker rm -f wwabackend
 
     #  - name: building docker backend
     #    run: sudo docker run --name wwabackend -p 5000:5000 -d pavanvarikolu/wwabackend:v1.1.1
