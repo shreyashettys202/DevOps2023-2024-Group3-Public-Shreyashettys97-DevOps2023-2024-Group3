@@ -26,7 +26,9 @@ jobs:
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
          docker build -t wwag3/wednesdaywickedadventures/backend:latest . 
       - name: Publish Image to docker Hub
-        run: docker push wwag3/wednesdaywickedadventures:latest
+        run: |
+         docker push wwag3/wednesdaywickedadventures/frontend:latest
+          docker push wwag3/wednesdaywickedadventures/backend:latest
 
   Pulling_docker_image:
     runs-on: self-hosted
