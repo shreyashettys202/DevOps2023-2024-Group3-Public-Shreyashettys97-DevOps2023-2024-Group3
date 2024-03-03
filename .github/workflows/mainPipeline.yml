@@ -20,15 +20,15 @@ jobs:
       - name: Build Docker Frontend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-         docker build -t wwag3/wednesdaywickedadventures/fronted:latest . 
+         docker build -t wwag3/wednesdaywickedadventures:latest . 
       - name: Build Docker Backend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
-         docker build -t wwag3/wednesdaywickedadventures/backend:latest . 
+         docker build -t wwag3/wednesdaywickedadventures:backend . 
       - name: Publish Image to docker Hub
         run: |
-         docker push wwag3/wednesdaywickedadventures/frontend:latest
-          docker push wwag3/wednesdaywickedadventures/backend:latest
+         docker push wwag3/wednesdaywickedadventures:latest
+          docker push wwag3/wednesdaywickedadventures:backend
 
   Pulling_docker_image:
     runs-on: self-hosted
