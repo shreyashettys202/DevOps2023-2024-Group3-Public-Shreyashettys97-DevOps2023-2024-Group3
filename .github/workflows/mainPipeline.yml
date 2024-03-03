@@ -16,7 +16,10 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Deleting old Images 
-        run: docker rmi -f $(docker images -q)
+        run: |
+         sudo docker image prune -a
+         docker system prune
+         docker rmi -f $(docker image ls -a -q)
       - name: Build Docker Frontend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
@@ -44,7 +47,7 @@ jobs:
   
       - name: pulling frontend image from docker hub
         run: sudo docker pull wwag3/wednesdaywickedadventures:backend 
-        
+
       - name: building backend container
         run: sudo docker run --name wwabackendapp -p 5000:5000 -d  wwag3/wednesdaywickedadventures:backend
 
