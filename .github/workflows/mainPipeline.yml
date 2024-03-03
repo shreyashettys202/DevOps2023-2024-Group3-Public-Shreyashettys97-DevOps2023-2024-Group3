@@ -50,13 +50,13 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Deleting old contanier 
-        run: docker rmi -f 18ffdcddf862
+        run: docker rmi -f $(docker images -q)
       - name: Build Docker Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-         docker build -t wwafrontend . 
+         docker build -t wwag3/wednesdaywickedadventures:latest . 
       - name: Publish Image to docker Hub
-        run: sudo docker push wwafrontend
+        run: docker push wwag3/wednesdaywickedadventures:latest
 
   Pulling_docker_image:
     runs-on: self-hosted
