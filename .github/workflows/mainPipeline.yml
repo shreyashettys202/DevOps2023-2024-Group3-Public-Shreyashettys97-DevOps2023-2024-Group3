@@ -70,7 +70,7 @@ jobs:
         run: sudo docker rm -f wwafrontendapp
 
       - name: building container
-        run: sudo docker run --name wwafrontendapp -p 3000:3000 -d docker pull wwag3/wednesdaywickedadventures:latest
+        run: sudo docker run --name wwafrontendapp -p 3000:3000 -d  wwag3/wednesdaywickedadventures:latest
 
       - name: Deleting old contanier 
         run: sudo docker rm -f wwabackend
