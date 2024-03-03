@@ -8,41 +8,7 @@ on:
     types:
       - "opened"
 jobs:
-  WWA-backend-master:
-     runs-on: ubuntu-latest
-     steps:
-      - name: getting codes
-        uses: actions/checkout@v4
-      - name: installing nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: running code
-        run: |
-          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
-          sudo npm i
-          sudo npm run test  
-
-  WWA-frontend-master:
-   # needs: Running_backend
-    runs-on: ubuntu-latest
-    steps:
-      - name: getting code
-        uses: actions/checkout@v4
-      - name: installing nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: installing  dependencies
-        run: |
-          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-          npm install 
-          npm install -g jsdoc
-          jsdoc -c jsdoc.json
-          npm run docs
-          npm run build 
-     
-  Build_docker_image:
+  Build_docker_FrontendImage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout codes
@@ -51,17 +17,20 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Deleting old Images 
         run: docker rmi -f $(docker images -q)
-      - name: Build Docker Images
+      - name: Build Docker Frontend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-         docker build -t wwag3/wednesdaywickedadventures:latest . 
+         docker build -t wwag3/wednesdaywickedadventures/fronted:latest . 
+      - name: Build Docker Backend Images
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
+         docker build -t wwag3/wednesdaywickedadventures/backend:latest . 
       - name: Publish Image to docker Hub
         run: docker push wwag3/wednesdaywickedadventures:latest
 
   Pulling_docker_image:
     runs-on: self-hosted
-    needs: Build_docker_image
-   # runs-on: self-hosted
+    needs: Build_docker_FrontendImage
     steps:
       - name: pulling image from docker hub 
         run: sudo docker pull wwag3/wednesdaywickedadventures:latest
