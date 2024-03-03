@@ -36,7 +36,7 @@ jobs:
           cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
           npm run docs
 
-    - name: Commit and push changes
+    - name: Commit and push change
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update documentation
