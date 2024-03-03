@@ -55,7 +55,7 @@ jobs:
         run: docker push  wwag3/wednesdaywickedadventures/wwafrontend:latest 
 
   Pulling_docker_image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Build_docker_image
    # runs-on: self-hosted
     steps:
@@ -66,7 +66,7 @@ jobs:
         run: docker rm -f wwafrontendapp
 
       - name: building container
-        run: docker run --name wwafrontendapp -p 3000:3000 -d pavanvarikolu/wwafrontend:v1.0
+        run: docker run --name wwafrontendapp -p 3000:3000 -d wednesdaywickedadventures/wwafrontend:latest
 
   Running_Docker_backend:
     runs-on: ubuntu-latest
