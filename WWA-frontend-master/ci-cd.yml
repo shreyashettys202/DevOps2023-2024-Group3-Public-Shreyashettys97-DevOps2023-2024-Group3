@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install JSDoc
+      run: npm i -g jsdoc
+
+    - name: Install docdash Theam
+      run: npm i docdash
+
+    - name: Generate JSDoc
+      run: npm run docs
+
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update documentation
+        branch: main
+
+
+    
+
+    
+
+    
+
+   
