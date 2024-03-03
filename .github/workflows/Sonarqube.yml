@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
 
 
-      - name: SonarQube Scan
+      - name: SonarQube Scans
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
