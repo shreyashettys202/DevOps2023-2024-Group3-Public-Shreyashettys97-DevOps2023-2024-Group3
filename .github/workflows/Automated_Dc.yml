@@ -27,7 +27,7 @@ jobs:
     - name: Install docdash Theam
       run: npm i docdash
 
-    - name: Generate JSDoc
+    - name: Generate JSDocs
       run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
          npm run docs
