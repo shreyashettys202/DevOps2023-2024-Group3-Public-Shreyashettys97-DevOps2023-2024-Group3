@@ -50,7 +50,7 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Deleting old contanier 
-        run: docker rmi -f 8eee1c092527, e4131150ac8c, 9a36aa9bdc8f, d1bbd1ec9d61, 6ac923e38b05, 18ffdcddf862, aab2cca0cf91, d4fc045c9e3a, aab2cca0cf91, d4fc045c9e3a, 18ffdcddf862
+        run: docker rmi -f 18ffdcddf862
       - name: Build Docker Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
