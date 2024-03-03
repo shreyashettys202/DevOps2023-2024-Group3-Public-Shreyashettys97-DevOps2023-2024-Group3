@@ -64,13 +64,13 @@ jobs:
    # runs-on: self-hosted
     steps:
       - name: pulling image from docker hub 
-        run: docker pull wwag3/wednesdaywickedadventures:latest
+        run: sudo docker pull wwag3/wednesdaywickedadventures:latest
 
       - name: Deleting old contanier 
-        run: docker rm -f wwafrontendapp
+        run: sudo docker rm -f wwafrontendapp
 
       - name: building container
-        run: docker run --name wwafrontendapp -p 3000:3000 -d docker pull wwag3/wednesdaywickedadventures:latest
+        run: sudo docker run --name wwafrontendapp -p 3000:3000 -d docker pull wwag3/wednesdaywickedadventures:latest
 
   
 
