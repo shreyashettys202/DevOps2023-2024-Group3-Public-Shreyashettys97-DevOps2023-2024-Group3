@@ -29,6 +29,7 @@ jobs:
 
     - name: Generate JSDocs
       run: |
+        cd 'D:\a\DevOps2023-2024-Group3\DevOps2023-2024-Group3\WWA-frontend-master\package.json'
          npm run docs
 
     - name: Move generated docs to root directory
