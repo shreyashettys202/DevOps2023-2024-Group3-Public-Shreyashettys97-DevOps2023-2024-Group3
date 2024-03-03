@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
-      - name: Deleting old contanier 
+      - name: Deleting old Images 
         run: docker rmi -f $(docker images -q)
       - name: Build Docker Images
         run: |
@@ -64,20 +64,15 @@ jobs:
    # runs-on: self-hosted
     steps:
       - name: pulling image from docker hub 
-        run: docker pull wwag3/wednesdaywickedadventures/wwafrontend:latest
+        run: docker pull wwag3/wednesdaywickedadventures:latest
 
       - name: Deleting old contanier 
         run: docker rm -f wwafrontendapp
 
       - name: building container
-        run: docker run --name wwafrontendapp -p 3000:3000 -d wednesdaywickedadventures/wwafrontend:latest
+        run: docker run --name wwafrontendapp -p 3000:3000 -d docker pull wwag3/wednesdaywickedadventures:latest
 
-  Running_Docker_backend:
-    runs-on: ubuntu-latest
-    #runs-on: self-hosted
-    steps:
-      - name: pulling image from dockerhub 
-        run: docker pull pavanvarikolu/wwabackend:v1.1.1
+  
 
       - name: Deleting old contanier 
         run: docker rm -f wwabackend
