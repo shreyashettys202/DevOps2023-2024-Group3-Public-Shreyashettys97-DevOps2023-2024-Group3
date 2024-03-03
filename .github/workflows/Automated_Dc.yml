@@ -22,10 +22,14 @@ jobs:
       run: npm install
 
     - name: Install JSDoc
-      run: npm i -g jsdoc
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i -g jsdoc
 
     - name: Install docdash Theam
-      run: npm i docdash
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i docdash
 
     - name: Generate JSDocs
       run: |
