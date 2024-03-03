@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     #runs-on: self-hosted
     steps:
-      - name: pulling image from docker hub 
+      - name: pulling image from dockerhub 
         run: docker pull pavanvarikolu/wwabackend:v1.1.1
 
       - name: Deleting old contanier 
