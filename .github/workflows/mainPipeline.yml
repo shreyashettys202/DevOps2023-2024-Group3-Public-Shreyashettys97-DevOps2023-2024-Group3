@@ -52,7 +52,7 @@ jobs:
       - name: Build Docker Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
-         docker build -t wwafrontend:latest . 
+         docker build -t wwag3/wwafrontend:latest . 
       - name: Publish Image to docker Hub
         run: sudo docker push wwag3/wwafrontend:latest 
 
