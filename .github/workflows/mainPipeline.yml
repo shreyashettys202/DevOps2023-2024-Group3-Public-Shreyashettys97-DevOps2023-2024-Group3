@@ -50,7 +50,9 @@ jobs:
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
       - name: Build Docker Images
-        run: docker build -t wwafrontend . 
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+         docker build -t wwafrontend . 
       - name: Publish Image to docker Hub
         run: docker push  wwag3/wednesdaywickedadventures/wwafrontend:latest 
 
