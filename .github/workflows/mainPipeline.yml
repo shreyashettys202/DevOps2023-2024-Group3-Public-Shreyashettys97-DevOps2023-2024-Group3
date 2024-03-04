@@ -40,11 +40,6 @@ jobs:
          sudo docker rm -f wwafrontendapp
          sudo docker rm -f wwabackendapp
 
-      - name: Running Docker-compose 
-        run: |
-         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
-         sudo docker-compose up
-
       - name: pulling frontend image from docker hub 
         run: sudo docker pull wwag3/wednesdaywickedadventures:latest
   
