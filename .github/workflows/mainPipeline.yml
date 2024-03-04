@@ -131,5 +131,24 @@ jobs:
         branch: dev-L00171125-Abhishek-DGW-132
 
 
+  SonarCloudSCan:
+    needs: [ Build_docker_FrontendImage, Pulling_docker_image]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: SonarCloud Scans
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+           # GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+        with:
+          args: >
+              -Dsonar.organization=wwag3
+              -Dsonar.projectKey=shreyashettys202_DevOps2023-2024-Group3
+            
+
+
 
    
