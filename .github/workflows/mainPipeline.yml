@@ -96,7 +96,7 @@ jobs:
             #-Dsonar.verbose= # optional, default is false
   Automated_Document:
     runs-on: ubuntu-latest
-    needs: [ Build_docker_FrontendImage, Pulling_docker_image, sonarqube_analysis]
+    needs: [ Build_docker_FrontendImage, Pulling_docker_image, sonarqube_analysis, SonarCloudSCan, OWASP-ZAP_scan]
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -152,7 +152,7 @@ jobs:
   OWASP-ZAP_scan:
     needs: [ Build_docker_FrontendImage, Pulling_docker_image]
     runs-on: ubuntu-latest
-    name: Scan the webapplication
+    name: OWASP-ZAP_scaning
     permissions: write-all
     steps:
       - name: Checkout repository
