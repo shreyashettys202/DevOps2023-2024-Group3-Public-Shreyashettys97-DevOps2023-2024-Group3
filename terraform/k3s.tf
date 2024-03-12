@@ -16,7 +16,7 @@ data "aws_ami" "Ubuntu_20_04" {
 resource "aws_instance" "myapp-server" {
   ami                         = data.aws_ami.Ubuntu_20_04.id
   instance_type               = var.instance_type
-  key_name                    = "jenkins-server"
+  key_name                    = "wwa"
   subnet_id                   = aws_subnet.myapp-subnet-1.id
   vpc_security_group_ids      = [aws_default_security_group.default-sg.id]
   availability_zone           = var.avail_zone
