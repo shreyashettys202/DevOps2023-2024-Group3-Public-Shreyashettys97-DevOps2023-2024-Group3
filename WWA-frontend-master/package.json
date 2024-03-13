@@ -2,10 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
   "proxy": "http://wwa-api:5000/",
-=======
->>>>>>> 3961c8210d37548caaf376c1546254cd1134f8fa
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -42,11 +39,7 @@
     ]
   },
   "devDependencies": {
-<<<<<<< HEAD
     "docdash": "^2.0.2",
-=======
-    "docdash": "^2.0.0",
->>>>>>> 3961c8210d37548caaf376c1546254cd1134f8fa
     "gh-pages": "^6.1.1",
     "jsdoc": "^4.0.2"
   }

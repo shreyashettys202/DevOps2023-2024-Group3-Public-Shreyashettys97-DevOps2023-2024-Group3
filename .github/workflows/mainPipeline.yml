@@ -23,7 +23,7 @@ jobs:
       - name: Deleting old Images 
         run: |
          docker rmi -f $(docker image ls -a -q)
-      - name: Build Docker Frontend Images
+      - name:  Docker Frontend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
          docker build -t wwag3/wednesdaywickedadventures:latest . 
