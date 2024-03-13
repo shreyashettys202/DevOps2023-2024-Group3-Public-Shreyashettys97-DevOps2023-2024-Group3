@@ -1,21 +1,19 @@
 {
-  "name": "frontend",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "proxy": "http://wwa-api:5000/",
+=======
+>>>>>>> 3961c8210d37548caaf376c1546254cd1134f8fa
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.2",
-    "bootstrap": "^5.3.2",
-    "jquery": "^3.7.1",
-    "js-cookie": "^3.0.5",
+    "better-docs": "^2.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.0",
-    "react-scripts": "5.0.1",
-    "react-spinners": "^0.13.8",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,7 +42,11 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "docdash": "^2.0.2",
+=======
+    "docdash": "^2.0.0",
+>>>>>>> 3961c8210d37548caaf376c1546254cd1134f8fa
     "gh-pages": "^6.1.1",
     "jsdoc": "^4.0.2"
   }

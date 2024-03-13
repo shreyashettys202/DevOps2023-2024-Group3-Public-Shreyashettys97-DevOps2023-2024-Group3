@@ -30,10 +30,10 @@ async function AdminSignupController(req, res) {
         // Save the user to the database
         await newUser.save();
 
-        res.status(201), res.json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
@@ -68,12 +68,12 @@ async function AdminLoginController(req, res) {
             expires: new Date(Date.now() + 258920000000),
 
         });
-        res.status(200), res.json({ message: 'Login Succesful' });
+        res.status(200).json({ message: 'Login Succesful' });
 
     }
     catch (err) {
         console.error(err);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 
 }
@@ -81,10 +81,10 @@ async function AdminLoginController(req, res) {
 function AdminLogoutController(req, res) {
     try {
         res.clearCookie('jwtoken');
-        res.status(200), res.json({ message: 'Logout successful' });
+        res.status(200).json({ message: 'Logout successful' });
     }
     catch (error) {
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
@@ -113,11 +113,11 @@ async function AdminForgotController(req, res) {
 
         user.password = password;
         await user.save();
-        res.status(200), res.json({ message: 'Password changed successfully' })
+        res.status(200).json({ message: 'Password changed successfully' })
 
     }
     catch (err) {
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 
 }

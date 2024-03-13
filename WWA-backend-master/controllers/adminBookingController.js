@@ -53,11 +53,11 @@ async function AdminBookTicketController(req, res) {
         const newBooking = new Booking(newBookingData);
         const response = await newBooking.save();
 
-        res.status(201), res.json({ message: 'Booking successfully', bookingnumber: bookingnumber });
+        res.status(201).json({ message: 'Booking successfully', bookingnumber: bookingnumber });
 
     } catch (error) {
         console.log(error);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
@@ -80,12 +80,12 @@ async function AdminBookingsController(req, res) {
         }
 
         const bookingslist = getBookingList({ bookings });
-        res.status(200), res.json({ message: 'Booking Found', bookings: bookingslist });
+        res.status(200).json({ message: 'Booking Found', bookings: bookingslist });
 
     }
     catch (err) {
         console.error(err);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
@@ -110,10 +110,10 @@ async function AdminEditTicketController(req, res) {
         bookingpre.children = user.children;
         await bookingpre.save();
 
-        res.status(200), res.json({ message: "Booking Update Successful" });
+        res.status(200).json({ message: "Booking Update Successful" });
     } catch (err) {
         console.error(err);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
@@ -126,11 +126,11 @@ async function AdminDeleteBookingController(req, res) {
 
         await bookingpre.save();
 
-        res.status(200), res.json({ message: "Booking Delete Successful" });
+        res.status(200).json({ message: "Booking Delete Successful" });
     }
     catch (err) {
         console.error(err);
-        res.status(500), res.json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 
 }
