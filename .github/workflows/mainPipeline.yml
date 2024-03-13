@@ -1,0 +1,210 @@
+name: frontend-master-workflow
+
+on: 
+  push:
+    branches:
+      - dev-L00171125-Abhishek-DGW-132
+  pull_request:
+    types:
+      - "opened"
+jobs:
+  Build_docker_FrontendImage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v4
+      - name: Sign in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
+
+      - name: Check docker login status
+        if: failure()
+        run: echo Docker login process failed.
+        
+      - name: Deleting old Images 
+        run: |
+         docker rmi -f $(docker image ls -a -q)
+      - name: Build Docker Frontend Images
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+         docker build -t wwag3/wednesdaywickedadventures:latest . 
+      - name: Build Docker Backend Images
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
+         docker build -t wwag3/wednesdaywickedadventures:backend . 
+      - name: Publish Image to docker Hub
+        run: |
+          docker push wwag3/wednesdaywickedadventures:latest
+          docker push wwag3/wednesdaywickedadventures:backend
+
+  IAC_Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codess
+        uses: actions/checkout@v4
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESSKEY}}
+          aws-secret-access-key: ${{secrets.AWS_SECRETEKEY}}
+          aws-region: ${{secrets.AWS_REGION}}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+         terraform_version: "1.1.7"
+
+      - name: runnning Terraform Commands
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
+         ls
+         terraform init
+         terraform validate -no-color
+         terraform plan 
+         terraform apply -auto-approve
+       # terraform destroy -auto-approve
+    
+  #Pulling_docker_image:
+   # runs-on: self-hosted
+    #needs: Build_docker_FrontendImage
+    #steps:
+     # - name: Deleting old contanier 
+      #  run: |
+       #  sudo docker rm -f wwafrontendapp
+        # sudo docker rm -f wwabackendapp
+
+      #- name: pulling frontend image from docker hub 
+       # run: sudo docker pull wwag3/wednesdaywickedadventures:latest
+  
+     # - name: pulling frontend image from docker hub
+      #  run: sudo docker pull wwag3/wednesdaywickedadventures:backend 
+
+     # - name: building backend container
+      #  run: sudo docker run --name wwabackendapp -p 5000:5000 -d  wwag3/wednesdaywickedadventures:backend
+
+
+      #- name: building frontend container
+       # run: sudo docker run --name wwafrontendapp -p 3000:3000 -d  wwag3/wednesdaywickedadventures:latest
+
+ # sudo docker system prune --all --force --volumes, docker system prune -a -y
+ 
+  sonarqube_analysis:
+    runs-on: ubuntu-latest
+    needs: [ Build_docker_FrontendImage, IAC_Build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on SonarQube, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # add the URL of your instance to the secrets of this repo with the name SONAR_HOST_URL (Settings > Secrets > Actions > add new repository secret)
+        with:
+          # Additional arguments for the sonarcloud scanner
+          args:
+            # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
+            # mandatory
+            -Dsonar.projectKey=group2
+            # Comma-separated paths to directories containing main source files.
+            #-Dsonar.sources= # optional, default is project base directory
+            # When you need the analysis to take place in a directory other than the one from which it was launched
+            #-Dsonar.projectBaseDir= # optional, default is .
+            # Comma-separated paths to directories containing test source files.
+            #-Dsonar.tests= # optional. For more info about Code Coverage, please refer to https://docs.sonarcloud.io/enriching/test-coverage/overview/
+            # Adds more detail to both client and server-side analysis logs, activating DEBUG mode for the scanner, and adding client-side environment variables and system properties to the server-side log of analysis report processing.
+            #-Dsonar.verbose= # optional, default is false
+  Automated_Document:
+    runs-on: ubuntu-latest
+    needs: [ Build_docker_FrontendImage, IAC_Build, sonarqube_analysis, SonarCloudSCan, OWASP-ZAP_scan]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install JSDoc
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i -g jsdoc
+
+    - name: Install docdash Theam
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i docdash
+
+    - name: Generate JSDocs
+      run: |
+          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+          npm run docs
+
+    - name: Commit and push change
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update documentation
+        branch: dev-L00171125-Abhishek-DGW-132
+
+
+  SonarCloudSCan:
+    needs: [ Build_docker_FrontendImage, IAC_Build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: SonarCloud Scans
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+           # GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+        with:
+          args: >
+              -Dsonar.organization=wwag3
+              -Dsonar.projectKey=shreyashettys202_DevOps2023-2024-Group3
+            
+
+  OWASP-ZAP_scan:
+    needs: [ Build_docker_FrontendImage, IAC_Build]
+    runs-on: ubuntu-latest
+    name: OWASP-ZAP_scaning
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
+          target: 'http://3.248.192.139:3000/'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
+      - name: Upload ZAP Scan Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-report
+         
+          path: |
+            report_html.html
+            report_json.json
+
+   
