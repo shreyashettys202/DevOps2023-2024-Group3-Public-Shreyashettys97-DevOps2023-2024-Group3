@@ -15,6 +15,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Sign in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
+
+      - name: Check docker login status
+        if: failure()
+        run: echo Docker login process failed.
+        
       - name: Deleting old Images 
         run: |
          docker rmi -f $(docker image ls -a -q)
@@ -53,7 +58,7 @@ jobs:
       - name: building frontend container
         run: sudo docker run --name wwafrontendapp -p 3000:3000 -d  wwag3/wednesdaywickedadventures:latest
 
- # sudo docker system prune --all --force --volumes
+ # sudo docker system prune --all --force --volumes, docker system prune -a -y
  
   sonarqube_analysis:
     runs-on: ubuntu-latest
