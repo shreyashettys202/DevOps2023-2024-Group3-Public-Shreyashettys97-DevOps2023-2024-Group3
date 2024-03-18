@@ -1,9 +1,14 @@
+module.exports = {
+    testEnvironment: 'node',
+    collectCoverage: true, // Enable coverage collection
+    coverageReporters: ["lcov", "text"], // Specify coverage reporters
+    // Optional: Specify the directory where Jest should output its coverage files
+    coverageDirectory: "coverage",
+};
 const { AdminSignupController, AdminLoginController, AdminForgotController, AdminLogoutController } = require("../../controllers/adminAuthController");
 const User = require("../../model/User");
 let request, response;
-
 jest.mock("../../model/User");
-
 beforeEach(() => {
     request = {
         body: {
@@ -12,14 +17,13 @@ beforeEach(() => {
             email: "email",
             password: "password",
             cpassword: "password"
-
         }
-    }
-    response = {
-        status: jest.fn((x) => x),
-        json: jest.fn((x) => x),
     };
-})
+    response = {
+        status: jest.fn().mockReturnThis(), // Adjusted for method chaining
+        json: jest.fn()
+    };
+});
 
 
 
