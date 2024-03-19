@@ -61,7 +61,7 @@ jobs:
          terraform validate -no-color
          terraform plan 
          terraform apply -auto-approve
-        # terraform destroy -auto-approve
+         terraform destroy -auto-approve
     
   #Pulling_docker_image:
    # runs-on: self-hosted
@@ -194,7 +194,7 @@ jobs:
       - name: Get Terraform Output
         id: terraform_output
         run: |
-         echo "::set-output name=target::$(terraform output <output_name>)"
+         echo "::set-output name=target::$(output.tf)"
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
@@ -211,4 +211,14 @@ jobs:
             report_html.html
             report_json.json
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+         terraform_version: "1.1.7"
+
+      - name: runnning Terraform Commands
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
+         ls
+         terraform destroy -auto-approve
    
