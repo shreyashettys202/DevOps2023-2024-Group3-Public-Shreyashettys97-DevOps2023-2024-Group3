@@ -182,7 +182,7 @@ jobs:
             
 
   OWASP-ZAP_scan:
-    needs: [ Build_docker_FrontendImage, IAC_Build]
+  #  needs: [ Build_docker_FrontendImage, IAC_Build]
     runs-on: ubuntu-latest
     name: OWASP-ZAP_scaning
     permissions: write-all
@@ -194,6 +194,8 @@ jobs:
       - name: Get Terraform Output
         id: terraform_output
         run: |
+         pwd
+         ls
          TARGET_URL=$(cat /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform/output.tf | grep -oP '(?<=target_url = ").*(?=")')
          if [[ $TARGET_URL != "http://"* && $TARGET_URL != "https://"* ]]; then
          TARGET_URL="http://$TARGET_URL"
