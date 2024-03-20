@@ -61,7 +61,10 @@ jobs:
          terraform validate -no-color
          terraform plan 
          terraform apply -auto-approve
-        # terraform destroy -auto-approve
+         terraform output vm_ip
+         echo TEST=$(terraform output vm_ip) >> $GITHUB_ENV
+         echo ${{ env.TEST }}
+         terraform destroy -auto-approve
     
   #Pulling_docker_image:
    # runs-on: self-hosted
