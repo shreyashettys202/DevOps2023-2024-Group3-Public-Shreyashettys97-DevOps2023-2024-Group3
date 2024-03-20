@@ -193,11 +193,7 @@ jobs:
        #   ref: main
       - name: Extract EC2 Public IP
         id: extract_ip
-        run: |
-          pwd
-          ls
-          echo "::set-output name=ec2_public_ip::$(cat terraform/outputs.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
-
+        run: echo "::set-output name=ec2_public_ip::$(cat terraform/outputs.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
@@ -209,7 +205,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: zap-report
-         
           path: |
             report_html.html
             report_json.json
