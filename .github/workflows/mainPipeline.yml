@@ -182,7 +182,7 @@ jobs:
             
 
   OWASP-ZAP_scan:
-  #  needs: [ Build_docker_FrontendImage, IAC_Build]
+    needs: [ IAC_Build]
     runs-on: ubuntu-latest
     name: OWASP-ZAP_scaning
     permissions: write-all
@@ -196,7 +196,7 @@ jobs:
         run: |
           pwd
           ls
-          echo "::set-output name=ec2_public_ip::$(cat home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform/output.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
+          echo "::set-output name=ec2_public_ip::$(cat terraform/output.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
