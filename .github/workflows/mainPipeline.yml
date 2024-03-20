@@ -196,7 +196,7 @@ jobs:
         run: |
           pwd
           ls
-          echo "::set-output name=ec2_public_ip::$(cat terraform/output.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
+          echo "::set-output name=ec2_public_ip::$(cat terraform/outputs.tf | grep 'ec2_public_ip' | awk '{print $3}' | tr -d '\"')"
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
