@@ -61,6 +61,8 @@ jobs:
          terraform validate -no-color
          terraform plan 
          terraform apply -auto-approve
+         echo "EC2_PUBLIC_IP=$(terraform output -json)" >> $GITHUB_ENV
+         echo "EC2 Public IP: $EC2_PUBLIC_IP"
         # terraform destroy -auto-approve
     
   #Pulling_docker_image:
@@ -191,16 +193,11 @@ jobs:
         uses: actions/checkout@v4
        #  with:
        #   ref: main
-      - name: Terraform Init
-        run: |
-         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
-         pwd
-         ls
-         terraform init -backend-config="backend_config.tfvars"
-
       - name: Extract EC2 Public IP
         id: extract_ip
-        run: echo "EC2_PUBLIC_IP=$(terraform output -json)" >> $GITHUB_ENV
+        run: |  
+         terraform output 
+         echo "EC2_PUBLIC_IP=$(terraform output -json)" >> $GITHUB_ENV
 
       - name: Print EC2 Public IP
         run: |
@@ -210,7 +207,7 @@ jobs:
         uses: zaproxy/action-full-scan@v0.9.0
         with:
           docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
-          target: "http://${{ steps.extract_ip.outputs.ec2_public_ip }}"
+          target: "http://${{ env.EC2_PUBLIC_IP }}"
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
       - name: Upload ZAP Scan Report
