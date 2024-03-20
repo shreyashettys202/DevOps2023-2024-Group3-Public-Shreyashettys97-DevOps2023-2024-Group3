@@ -61,8 +61,6 @@ jobs:
          terraform validate -no-color
          terraform plan 
          terraform apply -auto-approve
-         echo "EC2_PUBLIC_IP=$(terraform output -json)" >> $GITHUB_ENV
-         echo "EC2 Public IP: $EC2_PUBLIC_IP"
         # terraform destroy -auto-approve
     
   #Pulling_docker_image:
