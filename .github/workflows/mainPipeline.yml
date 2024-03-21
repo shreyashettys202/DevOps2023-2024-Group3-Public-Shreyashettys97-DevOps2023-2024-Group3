@@ -56,11 +56,11 @@ jobs:
       - name: runnning Terraform Commands
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
-         ls
          terraform init
          terraform validate -no-color
          terraform plan 
          terraform apply -auto-approve | tee terraform_output.txt 
+         ls
         # terraform apply -auto-approve
        #  terraform destroy -auto-approve
     
@@ -192,8 +192,11 @@ jobs:
         uses: actions/checkout@v4
        #  with:
        #   ref: main
-      - name: Print contents of outputs.tf
-        run: cat terraform/outputs.tf
+      - name: Debugging Information
+        run: |
+         pwd
+         ls -la /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
+         ls -la /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3
 
       - name: Extract EC2 Public IP
         id: extract_ip
