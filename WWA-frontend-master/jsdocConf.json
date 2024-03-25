@@ -1,34 +1,5 @@
 <<<<<<< HEAD
 {
-  "plugins": ["plugins/markdown"],
-  "recurseDepth": 10,
-  "opts": {
-    "template": "node_modules/docdash",
-    "destination": "./docs/",
-    "recurse": true
-  },
-  "source": {
-    "include": ["./", "README.md"],
-    "includePattern": ".+\\.js(doc|x)?$",
-    "excludePattern": "node_modules"
-  },
-  "sourceType": "module",
-  "tags": {
-    "allowUnknownTags": true,
-    "dictionaries": ["jsdoc", "closure"]
-  },
-  "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false
-  },
-  "docdash": {
-    "sort": true,
-    "search": true,
-    "collapse": false
-  }
-}
-=======
-{
     "plugins": ["plugins/markdown"],
     "recurseDepth": 10,
     "opts": {
@@ -56,4 +27,33 @@
       "collapse": false
     }
   }
->>>>>>> 3961c8210d37548caaf376c1546254cd1134f8fa
+=========
+{
+  "plugins": ["plugins/markdown"],
+  "recurseDepth": 10,
+  "opts": {
+    "template": "node_modules/docdash",
+    "destination": "./docs/",
+    "recurse": true
+  },
+  "source": {
+    "include": ["./", "README.md"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "node_modules"
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "docdash": {
+    "sort": true,
+    "search": true,
+    "collapse": false
+  }
+}
+>>>>>>>>> Temporary merge branch 2
