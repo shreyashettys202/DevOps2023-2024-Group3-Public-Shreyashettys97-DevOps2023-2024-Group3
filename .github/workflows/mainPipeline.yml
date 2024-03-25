@@ -157,7 +157,7 @@ jobs:
 
 
   SonarCloudSCan:
-    needs: [ Build_docker_FrontendImage, IAC_Build]
+    needs: [ Build_docker_Image, IAC_Build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
