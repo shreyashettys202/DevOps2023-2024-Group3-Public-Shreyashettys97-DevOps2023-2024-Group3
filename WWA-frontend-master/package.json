@@ -2,10 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-<<<<<<<<< Temporary merge branch 1
-=========
   "proxy": "http://wwa-api:5000/",
->>>>>>>>> Temporary merge branch 2
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -42,11 +39,7 @@
     ]
   },
   "devDependencies": {
-<<<<<<<<< Temporary merge branch 1
-    "docdash": "^2.0.0",
-=========
     "docdash": "^2.0.2",
->>>>>>>>> Temporary merge branch 2
     "gh-pages": "^6.1.1",
     "jsdoc": "^4.0.2"
   }

@@ -2,13 +2,9 @@ FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY package*.json . 
 
-RUN npm --version 
-RUN npm cache clean --force  
-RUN npm install -g npm  
-
-RUN npm install
+RUN npm i --force 
 
 COPY . .
 
