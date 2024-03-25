@@ -274,7 +274,7 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Snyk Security Scan
+      - name: Snyk Security Scans
         run: snyk test --org=shreyashettys202 --project-name='Project-Group3'
         continue-on-error: true
         env:
