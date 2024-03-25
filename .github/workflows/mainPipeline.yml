@@ -192,6 +192,7 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.login=${{ secrets.SONARCLOUD_TOKEN }}
             -Dsonar.javascript.lcov.reportPaths=WWA-backend-master/coverage/lcov.info
+            -X
 
             
 
