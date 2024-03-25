@@ -162,9 +162,9 @@ jobs:
  
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3   
+        uses: actions/checkout@v4   
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
       - name: Install dependencies
@@ -175,7 +175,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'adopt'
  
       - name: SonarCloud Scan
@@ -243,9 +243,9 @@ jobs:
 
       - name: Run JMeter tests
         run: |
-         docker run --rm \
-         -v $(pwd):/jmeter \
-         justb4/jmeter:latest \
+         docker run --rm `
+         -v ${PWD}:/jmeter `
+         justb4/jmeter:latest `
          -n -t /jmeter/path/to/your/testplan.jmx -l /jmeter/testresults.jtl
 
   snyk_analysis:
@@ -299,7 +299,12 @@ jobs:
         working-directory: WWA-backend-master
 
       - name: Snyk Monitor Frontend
-        run: snyk monitor --org=shreyashettys202 --project-name='Project-Group3'
+        run: |
+         pwd
+         ls
+         cd WWA-frontend-master
+         npm install --force
+         snyk monitor --org=shreyashettys202 --project-name='Project-Group3'
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         working-directory: WWA-frontend-master
