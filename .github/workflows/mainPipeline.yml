@@ -192,7 +192,6 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.login=${{ secrets.SONARCLOUD_TOKEN }}
             -Dsonar.javascript.lcov.reportPaths=WWA-backend-master/coverage/lcov.info
-            -X
 
             
 
@@ -243,10 +242,8 @@ jobs:
 
       - name: Run JMeter tests
         run: |
-         docker run --rm `
-         -v ${PWD}:/jmeter `
-         justb4/jmeter:latest `
-         -n -t /jmeter/path/to/your/testplan.jmx -l /jmeter/testresults.jtl
+          & 'C:\tools\jmeter\bin\jmeter.bat' -n -t path\to\your\testplan.jmx -l testresults.jtl
+
 
   snyk_analysis:
     runs-on: ubuntu-latest
@@ -302,7 +299,6 @@ jobs:
         run: |
          pwd
          ls
-         cd WWA-frontend-master
          npm install --force
          snyk monitor --org=shreyashettys202 --project-name='Project-Group3'
         env:
