@@ -36,9 +36,11 @@ jobs:
           docker push wwag3/wednesdaywickedadventures:latest
           docker push wwag3/wednesdaywickedadventures:backend
 
-  Pulling_docker_image:
-    runs-on: self-hosted
-    needs: Build_docker_FrontendImage
+
+  
+  IAC_Build:
+    runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Checkout codess
         uses: actions/checkout@v4
@@ -56,22 +58,30 @@ jobs:
 
       - name: runnning Terraform Commands
         run: |
-         sudo docker rm -f wwafrontendapp
-         sudo docker rm -f wwabackendapp
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
+         terraform init
+         terraform validate -no-color
+         terraform plan 
+         terraform apply -auto-approve 
+        # terraform destroy -auto-approve
+      
+  # Pulling_docker_image:
+   # runs-on: self-hosted
+   # needs: Build_docker_FrontendImage
+   # steps:
+    #  - name: Checkout codess
+     #   uses: actions/checkout@v4
+      #- name: Configure AWS
+       # uses: aws-actions/configure-aws-credentials@v4
+        #with:
+         # aws-access-key-id: ${{secrets.AWS_ACCESSKEY}}
+          #aws-secret-access-key: ${{secrets.AWS_SECRETEKEY}}
+        # aws-region: ${{secrets.AWS_REGION}}
 
       #- name: pulling frontend image from docker hub 
        # run: sudo docker pull wwag3/wednesdaywickedadventures:latest
-  
-     # - name: pulling frontend image from docker hub
-      #  run: sudo docker pull wwag3/wednesdaywickedadventures:backend 
-
      # - name: building backend container
       #  run: sudo docker run --name wwabackendapp -p 5000:5000 -d  wwag3/wednesdaywickedadventures:backend
-
-
-      #- name: building frontend container
-       # run: sudo docker run --name wwafrontendapp -p 3000:3000 -d  wwag3/wednesdaywickedadventures:latest
-
  # sudo docker system prune --all --force --volumes, docker system prune -a -y
  
   sonarqube_analysis:
@@ -164,7 +174,7 @@ jobs:
             
 
   OWASP-ZAP_scan:
-    needs: [ Build_docker_FrontendImage, Pulling_docker_image]
+    needs: [ IAC_Build]
     runs-on: ubuntu-latest
     name: OWASP-ZAP_scaning
     permissions: write-all
