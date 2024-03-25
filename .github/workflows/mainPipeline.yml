@@ -86,7 +86,7 @@ jobs:
  
   sonarqube_analysis:
     runs-on: ubuntu-latest
-    needs: [Build_docker_Image, IAC_Build]
+   # needs: [Build_docker_Image, IAC_Build]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -121,7 +121,7 @@ jobs:
 
   Automated_Document:
     runs-on: ubuntu-latest
-    needs: [ Build_docker_Image, IAC_Build, sonarqube_analysis, SonarCloudSCan, OWASP-ZAP_scan]
+   # needs: [ Build_docker_Image, IAC_Build, sonarqube_analysis, SonarCloudSCan, OWASP-ZAP_scan]
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -157,7 +157,7 @@ jobs:
 
 
   SonarCloudSCan:
-    needs: [ Build_docker_Image, IAC_Build]
+   # needs: [ Build_docker_Image, IAC_Build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

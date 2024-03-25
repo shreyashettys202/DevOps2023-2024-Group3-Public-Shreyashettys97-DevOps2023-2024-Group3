@@ -4,9 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json .
 
-RUN apk update && apk add npm
+RUN npm --version 
+RUN npm cache clean --force  
+RUN npm install -g npm  
 
-RUN npm i 
+RUN npm install
 
 COPY . .
 
