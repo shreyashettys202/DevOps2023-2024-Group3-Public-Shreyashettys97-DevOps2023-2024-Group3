@@ -71,6 +71,13 @@ resource "aws_default_security_group" "default-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
     Name = "${var.env_prefix}-default-sg"
   }
