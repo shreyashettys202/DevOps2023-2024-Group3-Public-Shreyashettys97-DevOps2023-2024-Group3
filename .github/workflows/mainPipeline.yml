@@ -243,7 +243,10 @@ jobs:
 
       - name: Run JMeter tests
         run: |
-          & 'C:\tools\jmeter\bin\jmeter.bat' -n -t path\to\your\testplan.jmx -l testresults.jtl
+         docker run --rm \
+         -v $(pwd):/jmeter \
+         justb4/jmeter:latest \
+         -n -t /jmeter/path/to/your/testplan.jmx -l /jmeter/testresults.jtl
 
   snyk_analysis:
     runs-on: ubuntu-latest
