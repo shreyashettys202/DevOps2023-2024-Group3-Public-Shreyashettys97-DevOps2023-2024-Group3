@@ -118,9 +118,7 @@ jobs:
          
       - name: Move testplan.jmx to specific director
         run: |
-          pwd
-          ls
           mv testplan.jmx WWA-frontend-master/Jmeter_test_reports/  
-          pwd 
-          ls
           git add WWA-frontend-master/Jmeter_test_reports/testplan.jmx
+          git commit -m "test plan"
+          git push origin dev-L00171125-Abhishek-DGW-132
