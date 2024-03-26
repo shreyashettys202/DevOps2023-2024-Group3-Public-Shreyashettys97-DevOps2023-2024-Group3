@@ -115,5 +115,5 @@ jobs:
 
             </hashTree>
 
-          </jmeterTestPlan>" > DevOps2023-2024-Group3/WWA-frontend-master/testplan.jmx
+          </jmeterTestPlan>" > WWA-frontend-master/Jmeter_test_report/testplan.jmx
  
