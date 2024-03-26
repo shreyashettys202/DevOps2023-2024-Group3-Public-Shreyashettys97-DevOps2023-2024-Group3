@@ -1,4 +1,10 @@
 // /comoponent/auth/ForgotPasswordPage.js
+/**
+ * @module ForgotPasswordPage
+ * @description This javascript file is used to set an email and password and shows functinality of forgot password page, used in WWA app
+ * @prop forgotPassword
+ * @param {Object} 
+ */
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
