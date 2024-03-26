@@ -241,9 +241,11 @@ jobs:
           tar -xf apache-jmeter-5.4.1.tgz
           export PATH=$PATH:$PWD/apache-jmeter-5.4.1/bin
  
-    #  - name: Run JMeter tests
-     #   run: |
-      #    jmeter -n -t path/to/your/testplan.jmx -l testresults.jtl
+      - name: Run JMeter tests
+        run: |
+          ls
+          pwd
+          jmeter -n -t WWA-frontend-master\Jmeter_test_reports\Local_testing.jmx 
 
   snyk_analysis:
     runs-on: ubuntu-latest
