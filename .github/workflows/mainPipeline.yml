@@ -240,7 +240,7 @@ jobs:
           wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
           tar -xf apache-jmeter-5.4.1.tgz
           export PATH=$PATH:$PWD/apache-jmeter-5.4.1/bin
-          jmeter -n -t /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3WWA-frontend-master\Jmeter_test_reports\Local_testing.jmx 
+          jmeter -n -t /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3WWA-frontend-master/Jmeter_test_reports/Local_testing.jmx 
  
       - name: Run JMeter tests
         run: |
