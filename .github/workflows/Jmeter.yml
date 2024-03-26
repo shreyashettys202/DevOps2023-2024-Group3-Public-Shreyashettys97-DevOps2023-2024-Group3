@@ -115,4 +115,7 @@ jobs:
             </hashTree>
 
           </jmeterTestPlan>" > testplan.jmx
+
+      - name: Move testplan.jmx to specific directory
+        run: mv testplan.jmx /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master/Jmeter_test_reports  
  
