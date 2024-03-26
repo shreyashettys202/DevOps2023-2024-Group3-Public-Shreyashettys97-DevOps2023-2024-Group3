@@ -114,5 +114,5 @@ jobs:
 
             </hashTree>
 
-          </jmeterTestPlan>" > 
+          </jmeterTestPlan>" > testplan.jmx
  
