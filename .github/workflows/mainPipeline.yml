@@ -245,7 +245,7 @@ jobs:
         run: |
           ls
           pwd
-          jmeter -n -t WWA-frontend-master\Jmeter_test_reports\Local_testing.jmx 
+          jmeter -n -t /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master\Jmeter_test_reports\Local_testing.jmx 
 
   snyk_analysis:
     runs-on: ubuntu-latest
