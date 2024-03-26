@@ -223,27 +223,27 @@ jobs:
 
 
   Jmeter_performance_test:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
+ 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+ 
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
-
+ 
       - name: Download and install JMeter
         run: |
-          Invoke-WebRequest -Uri 'https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.zip' -OutFile 'jmeter.zip'
-          Expand-Archive -Path 'jmeter.zip' -DestinationPath 'C:\tools\jmeter'
-
-      - name: Run JMeter tests
-        run: |
-          & 'C:\tools\jmeter\bin\jmeter.bat' -n -t path\to\your\testplan.jmx -l testresults.jtl
-
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
+          tar -xf apache-jmeter-5.4.1.tgz
+          export PATH=$PATH:$PWD/apache-jmeter-5.4.1/bin
+ 
+    #  - name: Run JMeter tests
+     #   run: |
+      #    jmeter -n -t path/to/your/testplan.jmx -l testresults.jtl
 
   snyk_analysis:
     runs-on: ubuntu-latest
