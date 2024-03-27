@@ -1,6 +1,6 @@
 /**
  * @module PrintTicketPage
- * @description This javascript file shows the functionality of PrintTicketPage, used in WWA app. This page will help to print the ticket booked.
+ * @description This javascript file shows the functionality of PrintTicketPage with the help of printfunction, used in WWA app. This page will help to print the ticket booked.
  * @prop PrintTicketPage
  * @function Printfunction
  * @param {Object} params
