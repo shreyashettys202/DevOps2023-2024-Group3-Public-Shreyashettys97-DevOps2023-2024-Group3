@@ -1,4 +1,10 @@
-// /comoponent/parks/QuestworldPage.js
+/**
+ * @module QuestworldPage
+ * @description This javascript file is used to show functionality or book Questworld Park from QuestworldPage, used in WWA app
+ * @prop QuestworldPage, handleCheckboxChange
+ * @function handleClick, handleSave, handleBook
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 
 const QuestworldPage = ({ setActiveTemplate, onSave }) => {
