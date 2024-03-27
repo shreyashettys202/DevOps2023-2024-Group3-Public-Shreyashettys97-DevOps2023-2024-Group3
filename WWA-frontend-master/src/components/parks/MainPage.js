@@ -1,4 +1,10 @@
 // /comoponent/parks/MainPage.js
+/**
+ * @module MainPage
+ * @description This javascript file is  shows functionality of main page with all the click buttons, used in WWA app
+ * @prop MainPage, handleClick
+ * @param {Object} params
+ */
 import React from "react";
 
 
