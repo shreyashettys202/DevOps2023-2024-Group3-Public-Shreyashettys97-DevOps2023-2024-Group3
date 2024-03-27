@@ -1,3 +1,10 @@
+/**
+ * @module PrintTicketPage
+ * @description This javascript file shows the functionality of PrintTicketPage, used in WWA app. This page will help to print the ticket booked.
+ * @prop PrintTicketPage
+ * @function Printfunction
+ * @param {Object} params
+ */
 import React, {useEffect} from 'react';
 
 const PrintTicketPage = ({ userDetails, bookingNumber, selectedAdventures }) => {
