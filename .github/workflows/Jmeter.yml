@@ -129,7 +129,6 @@ jobs:
 
           
   OWASP-ZAP_scan:
-   # needs: [ IAC_Build]
     runs-on: ubuntu-latest
     name: OWASP-ZAP_scaning
     permissions: write-all
