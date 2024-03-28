@@ -50,7 +50,7 @@
 
         </elementProp>
 
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">9</stringProp>
 
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
 
