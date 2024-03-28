@@ -1,4 +1,10 @@
 // /components/parks/ParksPage.js
+/**
+ * @module ParksPage
+ * @description This javascript file is used to show functionality of ParksPage, used in WWA app. This will show all the available parks to book.
+ * @prop ParksPage, onBook
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 import MainPage from "./MainPage";
 import ThrillvillePage from './ThrillvillePage';

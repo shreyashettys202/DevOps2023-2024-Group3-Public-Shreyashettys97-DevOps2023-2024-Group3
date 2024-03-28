@@ -1,4 +1,10 @@
 // /comoponent/auth/SignupPage.js
+/**
+ * @module SignupPage
+ * @description This javascript file is used to signup taking user firstname, lastname,email and password and shows functinality of SignupPage, used in WWA app
+ * @prop SignupPage, handelTermsCheck, handelInputs, registerUser, handleLoginClick
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 import axios from 'axios';
 

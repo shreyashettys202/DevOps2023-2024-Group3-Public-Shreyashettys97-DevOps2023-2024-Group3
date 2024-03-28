@@ -1,4 +1,10 @@
 // /components/common/LoggedInNavbar.js
+/**
+ * @module LoggedInNavbar
+ * @description This javascript file is used to navigate and handel logged in and out navbar used in WWA app
+ * @prop LoggedInNavbar, navigate, handleLogout
+ * @param {Object} params
+ */
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';

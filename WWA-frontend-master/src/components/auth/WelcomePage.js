@@ -1,4 +1,10 @@
 // /comoponent/auth/WelcomePage.js
+/**
+ * @module WelcomePage
+ * @description This javascript file is used to show the components of WelcomePage and shows functinality of WelcomePage, used in WWA app
+ * @prop WelcomePage
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';

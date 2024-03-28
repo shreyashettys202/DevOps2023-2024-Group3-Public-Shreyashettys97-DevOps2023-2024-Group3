@@ -1,3 +1,8 @@
+/**
+ * @module App
+ * @description This javascript file is used to render all pages in the used in WWA app
+ * @function App
+ */
 import React from "react";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

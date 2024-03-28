@@ -1,4 +1,10 @@
 // /comoponent/auth/LoginPage.js
+/**
+ * @module LoginPage
+ * @description This javascript file is used to login getting an email and password and shows functinality of login page, used in WWA app
+ * @prop LoginPage, loginUser, handleSignupClick, handleForgotClick
+ * @param {Object} params
+ */
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';

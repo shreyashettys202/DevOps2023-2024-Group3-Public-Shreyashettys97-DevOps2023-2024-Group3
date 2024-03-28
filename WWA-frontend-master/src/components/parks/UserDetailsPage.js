@@ -1,4 +1,11 @@
 // /component/parks/UserDetailsPage.js
+/**
+ * @module UserDetailsPage
+ * @description This javascript file is used to show functionality of UserDetails Park Page, used in WWA app.
+ * @prop UserDetailsPage
+ * @function decChildren , handleClick, handleBook, incAdult, decAdult, incChildren, decChildren
+ * @param {Object} params
+ */
 import React, { useState } from "react";
 
 const UserDetailPage = ({ setActiveTemplate, onBook }) => {

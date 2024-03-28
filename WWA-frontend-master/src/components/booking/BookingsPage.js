@@ -1,4 +1,10 @@
 // /comoponent/booking/BookingPage.js
+/**
+ * @module BookingPage
+ * @description This javascript file is used to showcase BookingPage functionality , used in WWA app
+ * @prop BookingsPage, checkBooking
+ * @param {Object} params
+ */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
