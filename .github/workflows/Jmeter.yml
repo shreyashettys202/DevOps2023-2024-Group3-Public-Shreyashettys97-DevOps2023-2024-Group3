@@ -96,7 +96,7 @@ jobs:
 
                   </elementProp>
 
-                  <stringProp name=\"ThreadGroup.num_threads\">10</stringProp>
+                  <stringProp name=\"ThreadGroup.num_threads\">9</stringProp>
 
                   <stringProp name=\"ThreadGroup.ramp_time\">1</stringProp>
 
@@ -122,7 +122,7 @@ jobs:
           git config --global user.email "L00171125@atu.ie" 
           git config --global user.name "Abhi9705"
           git status 
-          git add .
+          git add WWA-frontend-master/Jmeter_test_reports/testplan.jmx
           git commit -m "test plan"
           git push origin dev-L00171125-Abhishek-DGW-132
 
