@@ -41,14 +41,14 @@ const LoginPage = ({ setActiveTemplate }) => {
 
 
       <div className='col-lg-5 col-sm-12 text-warning my-5 p-5'>
-        <h1 className='wednesday-title'>WEDNESDAYS WICKED ADVENTURES</h1>
+        <h1 className='wednesday-title'>WEDNESDAYS WICKED TESTING</h1>
       </div>
 
 
       <div className="col-lg-4 col-sm-12">
         <div className="card bg-black text-warning" >
           <div className="card-body">
-            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Logins</p>
+            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
             <form method="POST" className="mx-1 mx-md-4">
 
