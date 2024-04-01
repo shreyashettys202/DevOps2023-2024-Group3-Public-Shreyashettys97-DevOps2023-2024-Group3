@@ -3,7 +3,7 @@ name: JMeter Performance Tests
 on: 
   push:
     branches:
-      - dev-L00171125-Abhishek-DGW-132
+      - develop
  
 jobs:
 
