@@ -18,7 +18,7 @@ services:
 
   # Node.js backend service
   backend:
-    image: pavanvarikolu/wwabackend:v1.1.1
+    image: wwag3/wednesdaywickedadventures:backend 
     container_name: wwa-api
     command: npm start
     depends_on:
@@ -32,7 +32,7 @@ services:
       
   # frontend service
   frontend:
-    image: pavanvarikolu/wwafrontend:v1.1.1
+    image: wwag3/wednesdaywickedadventures:latest
     container_name: frontend-container
     depends_on:
       - backend

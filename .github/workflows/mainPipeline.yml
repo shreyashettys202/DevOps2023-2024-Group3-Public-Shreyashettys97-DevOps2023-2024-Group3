@@ -1,0 +1,309 @@
+name: frontend-master-workflow
+
+on: 
+  push:
+    branches:
+      - develop
+ # pull_request:
+   # types:
+    #  - "opened"
+jobs:
+  Build_docker_Image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v4
+      - name: Sign in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}} 
+
+      - name: Check docker login status
+        if: failure()
+        run: echo Docker login process failed.
+        
+      - name: Deleting old Images 
+        run: |
+         docker rmi -f $(docker image ls -a -q)
+      - name:  Docker Frontend Images
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+         docker build -t wwag3/wednesdaywickedadventures:latest . 
+      - name: Build Docker Backend Images
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
+         docker build -t wwag3/wednesdaywickedadventures:backend . 
+      - name: Publish Image to docker Hub
+        run: |
+          docker push wwag3/wednesdaywickedadventures:latest
+          docker push wwag3/wednesdaywickedadventures:backend
+
+
+  
+  IAC_Build:
+    runs-on: ubuntu-latest
+    needs: [Build_docker_Image]
+    permissions: write-all
+    outputs:
+     target_url: ${{ steps.running-terraform-commands.outputs.target }}
+    steps:
+      - name: Checkout codess
+        uses: actions/checkout@v4
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESSKEY}}
+          aws-secret-access-key: ${{secrets.AWS_SECRETEKEY}}
+          aws-region: ${{secrets.AWS_REGION}}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+         terraform_version: "1.1.7"
+
+      - name: Running Terraform Commands
+        id: running-terraform-commands
+        working-directory: ./terraform
+        run: |
+         cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/terraform
+         terraform init
+         terraform validate -no-color
+         terraform plan
+         terraform apply -auto-approve | tee terraform_output.txt
+         TARGET_URL=$(terraform output ec2_public_ip)
+         echo "::set-output name=target::$TARGET_URL"
+         echo "EC2 IP Address: $TARGET_URL"  # Print EC2 IP in the pipeline
+         echo "##[group]Terraform Output"
+         cat terraform_output.txt
+         echo "##[endgroup]"
+      #  terraform destroy -auto-approve
+
+  zap_scan:
+   name: OWASP-ZAP integration
+   runs-on: ubuntu-latest
+   permissions: write-all
+   needs: IAC_Build
+   steps:
+     - name: Wait for 2 minutes
+       run: sleep 120
+     - name: Checkout repository
+       uses: actions/checkout@v2
+       with:
+         ref: main
+     - name: ZAP Scan
+       uses: zaproxy/action-baseline@v0.11.0
+       with:
+      #   token: ${{ secrets.GITHUB_TOKEN }}
+         docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
+         target: 'http://${{ needs.IAC_Build.outputs.target_url }}:3000'
+         rules_file_name: '.zap/rules.tsv'
+         cmd_options: '-a'
+     - name: Upload ZAP Scan Report
+       uses: actions/upload-artifact@v2
+       with:
+         name: zap-report
+         path: |
+           report_html.html
+           report_json.json
+      
+  # Pulling_docker_image:
+   # runs-on: self-hosted
+   # needs: Build_docker_FrontendImage
+   # steps:
+    #  - name: Checkout codess
+     #   uses: actions/checkout@v4
+      #- name: Configure AWS
+       # uses: aws-actions/configure-aws-credentials@v4
+        #with:
+         # aws-access-key-id: ${{secrets.AWS_ACCESSKEY}}
+          #aws-secret-access-key: ${{secrets.AWS_SECRETEKEY}}
+        # aws-region: ${{secrets.AWS_REGION}}
+
+      #- name: pulling frontend image from docker hub 
+       # run: sudo docker pull wwag3/wednesdaywickedadventures:latest
+     # - name: building backend container
+      #  run: sudo docker run --name wwabackendapp -p 5000:5000 -d  wwag3/wednesdaywickedadventures:backend
+ # sudo docker system prune --all --force --volumes, docker system prune -a -y
+ 
+  sonarqube_analysis:
+    runs-on: ubuntu-latest
+    needs: [SonarCloudScan]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: cd WWA-backend-master && npm install
+      - name: Run Jest tests with coverage
+        run: cd WWA-backend-master && npm test -- --coverage || true
+        # Run tests with coverage, ignoring failures with '|| true'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args:
+            -Dsonar.projectKey=group2
+            -Dsonar.sources=.
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.javascript.lcov.reportPaths=WWA-backend-master/coverage/lcov.info
+            # Add other SonarQube analysis parameters as needed
+
+  Automated_Document:
+    runs-on: ubuntu-latest
+    needs: [ sonarqube_analysis]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install JSDoc
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i -g jsdoc
+
+    - name: Install docdash Theam
+      run: |
+       cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+       npm i docdash
+
+    - name: Generate JSDocs
+      run: |
+          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-frontend-master
+          npm run docs
+
+    - name: Commit and push change
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update documentation
+        branch: develop
+
+
+  SonarCloudScan:
+    runs-on: ubuntu-latest
+    needs: [snyk_analysis]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4   
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: cd WWA-backend-master && npm install
+      - name: Run Jest tests with coverage
+        run: cd WWA-backend-master && npm test -- --coverage || true
+        # Run tests with coverage, ignoring failures with '|| true'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+ 
+      - name: SonarCloud Scan
+        # uses: sonarsource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
+        # uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=wwag3
+            -Dsonar.projectKey=shreyashettys202_DevOps2023-2024-Group3
+            -Dsonar.sources=.
+            -Dsonar.login=${{ secrets.SONARCLOUD_TOKEN }}
+            -Dsonar.javascript.lcov.reportPaths=WWA-backend-master/coverage/lcov.info
+
+
+  snyk_analysis:
+    runs-on: ubuntu-latest
+    needs: [IAC_Build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: cd WWA-backend-master && npm install
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          
+# Snyk security scan step for web
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' # Adjust based on your project's Node.js version
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Snyk Security Scans
+        run: snyk test --org=shreyashettys202 --project-name='Project-Group3'
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        working-directory: WWA-backend-master
+
+      - name: Snyk Security Scan Frontend
+        run: snyk test --org=shreyashettys202 --project-name='Project-Group3'
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        working-directory: WWA-frontend-master
+                
+      - name: Snyk Monitor
+        run: snyk monitor --org=shreyashettys202 --project-name='Project-Group3'
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        working-directory: WWA-backend-master
+
+      - name: Snyk Monitor Frontend
+        run: |
+         npm install --force
+         snyk monitor --org=shreyashettys202 --project-name='Project-Group3'
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        working-directory: WWA-frontend-master
+                
+  # Snyk security scan step for Code Scanning
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        with:
+          args: ./WWA-backend-master --sarif-file-output=snyk.sarif
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Upload SARIF to GitHub Security Center
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk.sarif
+          category: 'Snyk OpenSource Unique Category'
+
+     

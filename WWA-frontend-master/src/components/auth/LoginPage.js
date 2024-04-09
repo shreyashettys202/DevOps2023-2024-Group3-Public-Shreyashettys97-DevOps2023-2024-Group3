@@ -47,7 +47,7 @@ const LoginPage = ({ setActiveTemplate }) => {
 
 
       <div className='col-lg-5 col-sm-12 text-warning my-5 p-5'>
-        <h1 className='wednesday-title'>WEDNESDAYS WICKED ADVENTURES</h1>
+        <h1 className='wednesday-title'>WEDNESDAYS WICKED TESTING</h1>
       </div>
 
 
