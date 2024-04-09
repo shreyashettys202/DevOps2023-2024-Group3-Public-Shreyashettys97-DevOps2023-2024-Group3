@@ -1,4 +1,11 @@
 // /comoponent/parks/ShadowKingdomPage.js
+/**
+ * @module ShadowKingdomPage
+ * @description This javascript file is used to show functionality of ShadowKingdom Park Page, used in WWA app
+ * @prop ShadowKingdomPage
+ * @function handleCheckboxChange , handleClick, handleSave, handleBook
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 
 const ShadowKingdomPage = ({ setActiveTemplate, onSave }) => {

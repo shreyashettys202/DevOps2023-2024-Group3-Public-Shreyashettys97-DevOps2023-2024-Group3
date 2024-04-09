@@ -1,4 +1,10 @@
 // /components/common/Navbar.js
+/**
+ * @module Navbar
+ * @description This javascript file is used to show functionality of Navigation Bar, used in WWA app
+ * @prop Navbar
+ * @param {Object} params
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
 

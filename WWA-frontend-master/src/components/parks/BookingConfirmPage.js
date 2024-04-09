@@ -1,4 +1,10 @@
 // /comoponent/parks/BookingConfirmPage.js
+/**
+ * @module BookingConfirmPage
+ * @description This javascript file is used to showcase functionality of Booking Confirmation, used in WWA app
+ * @prop BookingConfirmPage, navigate, handleView, handlePrint, handleLogout
+ * @param {Object} params
+ */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
