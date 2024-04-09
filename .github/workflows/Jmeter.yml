@@ -96,7 +96,7 @@ jobs:
 
                   </elementProp>
 
-                  <stringProp name=\"ThreadGroup.num_threads\">10</stringProp>
+                  <stringProp name=\"ThreadGroup.num_threads\">11</stringProp>
 
                   <stringProp name=\"ThreadGroup.ramp_time\">1</stringProp>
 
@@ -124,7 +124,7 @@ jobs:
           git status 
           git add WWA-frontend-master/Jmeter_test_reports/testplan.jmx
           git commit -m "test plan"
-          git push origin dev-L00171125-Abhishek-DGW-132
+          git push develop
 
 
           
