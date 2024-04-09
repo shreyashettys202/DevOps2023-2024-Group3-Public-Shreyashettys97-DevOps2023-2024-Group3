@@ -42,6 +42,12 @@ Week 7,  Shreya Shantharama Shetty
 Week 8,  Shreya Shantharama Shetty
 Week 9,  Pavan Kalyan Varikolu
 Week 10, Pavan Kalyan Varikolu
+Week 11, Riya Devikar
+Week 12, Riya Devikar
+Week 13, Nayana Purohit Nagaraj
+Week 14, Nayana Purohit Nagaraj
+Week 15, Nayana Purohit Nagaraj
+Week 16, Nayana Purohit Nagaraj
 Rotating scrum master so that everyone gets to experience the role once.
 
 # Product Owner
@@ -56,10 +62,15 @@ Week 7,  Riya Devikar
 Week 8,  Riya Devikar
 Week 9,  Jolly Kannampuzha
 Week 10, Jolly Kannampuzha
+Week 11, Abhishek Sharma
+Week 12, Abhishek Sharma
+Week 13, Shreya Shantharama Shetty
+Week 14, Shreya Shantharama Shetty
+Week 15, Shreya Shantharama Shetty
+Week 16, Shreya Shantharama Shetty
 Rotating product owner so that everyone gets to experience the role once.
 
 # Team Members
-<<list team member names here>>
 Abhishek Sharma
 Jolly Kannampuzha
 Nayana Purohit Nagaraj
@@ -74,56 +85,71 @@ Thursday 4th April at midnight
 Clean and simple design
 User access levels (client, administrator)
 Includes at least one self developed api and one webservice
-To be run over <specify platform>
+To be run over : Cloud Platform (AWS, Kubernetes)
 
 # Frameworks
-Database
+Database : MongoDB
 Database persistence technology
-Define the buisness Requirements
-Named queries and database triggers for security
-Regex for cleansing and validation of data before sending to the database.
+Define the buisness Requirements: 
+Our application is simple scale with limited features , we used Mern stack to implemnet Monolithic application.
+User Authentication
+Admin Authentication
+Admin have Special rights to modify and delete the user data.
+Booking Confirmation
+User booking details
+we have used JWT token authentication .
+This application will support different devices liek tablet, mobile , desktop.
+Named queries and database triggers for security : We have used NOSQL database , dynamic schema is supported and its stores data in JSON format.
+Regex for cleansing and validation of data before sending to the database. 
 
 # Useful Links
  - Project Slack: https://atudevops.slack.com
  - GitHub: https://github.com/shreyashettys202/DevOps2023-2024-Group3
 
 # More Information
-For more information visit our other sections
-<<>>
+Confluence : https://wednesday-wicked-adventures.atlassian.net/wiki/spaces/Wednesdays1/overview
+JIRA : https://wednesday-wicked-adventures.atlassian.net/jira/software/projects/DGW/boards/1/timeline
 
 # Risk Register
 These are the current Risks on the project, re-aligned on a weekly basis
-
+- Initially as team we have done good brainstormin on choosing tools and technologie sto develop thsi web application. No risks observed throughout this project from infrastructure and softwrae perspective.
+- On othe some technical issues  we faced where handled in user stories.
 
 # Tenants of Design
 Update the below to add what the group is using <<>>
 - Dedication to clean, secure, performant and self documented code
-  - code Frameworks used <<>>
-  - programming using the IDE << >>
-  - code coverage tool used <<>>
-  - Secure code:  <<>>
-  - performance testing tool to be used <<>>
-- Documentation / code commenting <<>>
-- Datastore for persistance <<>>
+  - code Frameworks used Node JS , React JS , Express JS
+  - programming using the IDE  Visuak studio code
+  - code coverage tool used Sonarqube , SonarCloud
+  - Secure code: Snyk , Sonar Cloud, Owsap zap
+  - performance testing tool to be used : JMeter
+  - Performance monitoring tool: Prometheus, Grafana, New Relic
+- Documentation  : JSDoc , Swagger Api documentation
+- code commenting  : Github , Git
+- Datastore for persistance : kubernetes peristence volume
  
 # Security:
-- << >>: uses static analysis to find bugs in code. 
-- <<>>.
+uses static/ dynamic analysis to find bugs in code. 
+- SAST : Sonarcloud, Snyk
+- DAST : OWSAP ZAP
 
 # Testing:
-- Unit testing <<>>
-- integretation testing <<>>
-- UA  <<>>
+- Unit testing : JEST
+- integretation testing / UI Tsting : Selenium
     
 # Environments:
-- staging and production  <<>>
-- tight configuration management for consistency and reproducibility  <<>>
-- automated creation and deployments  <<>>
-- integrated and automated pipeline (commit -> test -> deploy) <<>>
+- staging : Github
+- Production : EC2
+- tight configuration management for consistency and reproducibility : Github actions
+- automated creation and deployments : Github Actions Pipeline)
+- integrated and automated pipeline (commit -> test -> deploy)
+  commit - > Git/ Github
+  test -> JEST , Selenium
+  deploy -> Github Actions -> sonarqube, sonarcloud, snyk,Automated doc, Docker Build , IaC Build , deploy to AWS , Owsap zap, JMeter, New RElic, Prometheus
 
 # Github version control:
-- branches used <<>>
-- version/release management <<>>
+- branches used  main , develop , feature branches
+- version/release management : dev / staging/production
 
 # Agile project management methods/principles (jira)
 
@@ -142,15 +168,15 @@ Update the below to add what the group is using <<>>
     Use Agile methodoligies in the project at all times.
 
 # Meetings
-    Stand-ups will occur on Every <<day/time>> during class. Two per week.
-    The order that people give their updates will be << >>.
+    Stand-ups will occur on Every Monday & Wednsday during class. Two per week.
+    The order that people give their updates will be Developer will go first and then QA.
     Updates will be in the form: What I've done, Impediments, What I plan to do.
-    Sprint planning will occur at <<date/time>> every week.
-    Please add and update items within <<issue management tool>> a prior to the sprint planning session.
-    Sprint retro will at the end of our sprint on <<Date/Time>> (timebox retro for <> minutes, to be organised by the scrum master).
+    Sprint planning will occur at Monday ( 9.30 - 11.30 AM) (sometimes depends on team) every week.
+    Please add and update items within JIRA a prior to the sprint planning session.
+    Sprint retro will at the end of our sprint on Monday ( Time will be depend on team availibility) (timebox retro for 30 minutes, to be organised by the scrum master).
     Points raised in the sprint retro will be noted and posted on the Jira by the Scrum Master. The Scrum Master is rotated per team member every week.
-    Backlog refinement will happen on <<date/time>> during our sprint.
-    Task estimation will be done using << >>. 
+    Backlog refinement will happen on MOnday Before Sprint planning during our sprint.
+    Task estimation will be done using Planning Poker. 
     Come prepared to meetings.
     Be on time for Stand Ups and meetings.
     Mobile phones on silent.
@@ -187,9 +213,26 @@ Update the below to add what the group is using <<>>
     Our branching stategy will start with <<>>
 
 # Estimating Story Points
-The teams team's velocity is calculated by <<Team decides>>.
+The teams team's velocity is calculated in Sprint Planning.
+story estimation : Iteration planning
 
 The teams current story point velocity is "N/A". <<Update the velocity as the weeks progress>>
+Sprint1 : 18
+Sprint 2: holidays
+Sprint 3: 29
+Sprint 4: 32
+Sprint 5: 26
+Sprint 6: 29
+Sprint 7: 29
+Sprint 8: 21
 
 # Definition of Ready/Done
-<<List criteria that are common here>>
+
+Planned For sprint : stories which are estimated and planne dfor sprint
+In Development : Story in progress
+In Review : story is ready for review
+Ready for QA Testing : dev story is ready fro testing
+QA Test in Progress : Story is under qa testing
+Ready for Prod : story is readyfor production handover
+Done : Story has been completed
+

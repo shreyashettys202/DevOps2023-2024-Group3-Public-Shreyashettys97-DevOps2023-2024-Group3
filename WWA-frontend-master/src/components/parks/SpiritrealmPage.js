@@ -1,4 +1,11 @@
 // /comoponent/parks/SpiritrealmPage.js
+/**
+ * @module SpiritrealmPage
+ * @description This javascript file is used to show functionality of Spiritrealm Park Page, used in WWA app
+ * @prop SpiritrealmPage
+ * @function handleCheckboxChange , handleClick, handleSave, handleBook
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 
 const SpiritrealmPage = ({ setActiveTemplate, onSave }) => {

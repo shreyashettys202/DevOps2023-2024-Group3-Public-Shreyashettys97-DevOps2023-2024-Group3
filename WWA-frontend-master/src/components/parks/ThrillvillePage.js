@@ -1,4 +1,11 @@
 // /comoponent/parks/ThrillvillePage.js
+/**
+ * @module ThrillvillePage
+ * @description This javascript file is used to show functionality of Thrillville Park Page, used in WWA app.
+ * @prop ThrillvillePage
+ * @function handleCheckboxChange , handleClick, handleSave, handleBook
+ * @param {Object} params
+ */
 import React, { useState } from 'react';
 
 const ThrillvillePage = ({ setActiveTemplate, onSave }) => {
