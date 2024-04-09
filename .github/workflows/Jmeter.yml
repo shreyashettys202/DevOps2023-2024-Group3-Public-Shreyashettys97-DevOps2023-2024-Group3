@@ -120,7 +120,7 @@ jobs:
         run: |
           mv testplan.jmx WWA-frontend-master/Jmeter_test_reports/ 
           git config --global user.email "shreyashettys202@gmail.com" 
-          git config --global user.name "shreyashetty202"
+          git config --global user.name "shreyashettys202"
           git status 
           git add WWA-frontend-master/Jmeter_test_reports/testplan.jmx
           git commit -m "test plan"
