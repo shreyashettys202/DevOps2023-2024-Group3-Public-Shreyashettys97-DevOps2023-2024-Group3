@@ -3,7 +3,7 @@ name: JMeter Performance Tests
 on: 
   push:
     branches:
-      - develop
+      - dev-L00171125-Abhishek-DGW-132
  
 jobs:
 
@@ -96,7 +96,7 @@ jobs:
 
                   </elementProp>
 
-                  <stringProp name=\"ThreadGroup.num_threads\">16</stringProp>
+                  <stringProp name=\"ThreadGroup.num_threads\">11</stringProp>
 
                   <stringProp name=\"ThreadGroup.ramp_time\">1</stringProp>
 
@@ -119,12 +119,12 @@ jobs:
       - name: Move testplan.jmx to specific director
         run: |
           mv testplan.jmx WWA-frontend-master/Jmeter_test_reports/ 
-          git config --global user.email "shreyashettys202@gmail.com" 
-          git config --global user.name "shreyashettys202"
+          git config --global user.email "L00171125@atu.ie" 
+          git config --global user.name "Abhi9705"
           git status 
           git add WWA-frontend-master/Jmeter_test_reports/testplan.jmx
           git commit -m "test plan"
-          git push develop
+          git push dev-L00171125-Abhishek-DGW-132
 
 
           
