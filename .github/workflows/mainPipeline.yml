@@ -293,7 +293,7 @@ jobs:
                 
   # Snyk security scan step for Code Scanning
 
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk to check for vulnerabilitie
         uses: snyk/actions/node@master
         continue-on-error: true
         with:
