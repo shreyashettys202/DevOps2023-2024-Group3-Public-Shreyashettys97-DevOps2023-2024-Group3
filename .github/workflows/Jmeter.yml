@@ -116,7 +116,7 @@ jobs:
 
           </jmeterTestPlan>" > testplan.jmx
          
-      - name: Move testplan.jmx to specific director
+      - name: Move testplan.jmx to specific directors
         run: |
           mv testplan.jmx WWA-frontend-master/Jmeter_test_reports/ 
           git config --global user.email "L00171125@atu.ie" 
