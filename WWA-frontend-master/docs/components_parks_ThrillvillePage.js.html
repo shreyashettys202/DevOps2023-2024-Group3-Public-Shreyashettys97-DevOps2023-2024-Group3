@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/parks/ThrillvillePage.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BookingConfirmPage.html">BookingConfirmPage</a></li><li><a href="module-BookingPage.html">BookingPage</a></li><li><a href="module-ForgotPasswordPage.html">ForgotPasswordPage</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-LoggedInNavbar.html">LoggedInNavbar</a></li><li><a href="module-LoginPage.html">LoginPage</a></li><li><a href="module-MainPage.html">MainPage</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-ParksPage.html">ParksPage</a></li><li><a href="module-SignupPage.html">SignupPage</a></li><li><a href="module-WelcomePage.html">WelcomePage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Printfunction">Printfunction</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/parks/ThrillvillePage.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// /comoponent/parks/ThrillvillePage.js
+/**
+ * @module ThrillvillePage
+ * @description This javascript file is used to show functionality of Thrillville Park Page, used in WWA app.
+ * @prop ThrillvillePage
+ * @function handleCheckboxChange , handleClick, handleSave, handleBook
+ * @param {Object} params
+ */
+import React, { useState } from 'react';
+
+const ThrillvillePage = ({ setActiveTemplate, onSave }) => {
+
+    const [termsCheck1, setTermsCheck1] = useState(false);
+    const [termsCheck2, setTermsCheck2] = useState(false);
+    const [selectedAdventures, setSelectedAdventures] = useState([]);
+
+    const handleCheckboxChange = (adventureName) => {
+        setSelectedAdventures((prevSelectedAdventures) => {
+            if (prevSelectedAdventures.includes(adventureName)) {
+                return prevSelectedAdventures.filter((adventure) => adventure !== adventureName);
+            } else {
+                return [...prevSelectedAdventures, adventureName];
+            }
+        });
+    };
+
+    const handelTermsCheck1 = (e) => {
+        setTermsCheck1(e.target.checked);
+    }
+
+    const handelTermsCheck2 = (e) => {
+        setTermsCheck2(e.target.checked);
+    }
+
+    const handleClick = (e) => {
+        setActiveTemplate(e.target.name);
+    }
+
+    const handleSave = () => {
+        onSave(selectedAdventures);
+    };
+
+    const handleBook = () => {
+        if (selectedAdventures.length === 0) {
+            window.alert("Please Select an Adventure");
+        }
+        else {
+            onSave(selectedAdventures);
+            setActiveTemplate('userdetails');
+        }
+    };
+
+    return (
+        &lt;div className='container-fluid mt-5'>
+
+            &lt;div className='row m-lg-5'>
+                &lt;h1 className='text-warning'>WELCOME TO THRILLVILLE&lt;/h1>
+                &lt;p className='text-warning'>“Thrill to Interactive dark ride, our star ride, and discover more exciting adventures”&lt;/p>
+            &lt;/div>
+
+            &lt;div className='container'>
+
+                &lt;div className='row mx-4'>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="rockClimbingCheckbox" onChange={() => handleCheckboxChange('Rock Climbing')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="rockClimbingCheckbox">
+                                    ROCK CLIMBING
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="bungeeJumping" onChange={() => handleCheckboxChange('Bungee Jumping')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="bungeeJumping">
+                                    BUNGEE JUMPING
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div className='row mx-4'>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="4dCoaster" onChange={() => handleCheckboxChange('4D Coaster')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="4dCoaster">
+                                    4D COASTER
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="slingShot" onChange={() => handleCheckboxChange('Sling Shot')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="slingShot">
+                                    SLING SHOT
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div className='row mx-4'>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="interactiveDarkRide" onChange={() => handleCheckboxChange('Interactive Dark Ride')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="interactiveDarkRide">
+                                    INTERACTIVE DARK RIDE
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className='col-lg-6 col-md-12'>
+                        &lt;div className='row  m-3 py-3 bg-black border rounded border-warning big'>
+                            &lt;div className='col-3'>
+                                &lt;input className="form-check-input" type="checkbox" value="" id="3dMotionSimulator" onChange={() => handleCheckboxChange('3D Motion Simulator')} />
+                            &lt;/div>
+                            &lt;div className='col-9'>
+                                &lt;label className="form-check-label text-warning h2" htmlFor="3dMotionSimulator">
+                                    3D MOTION SIMULATOR
+                                &lt;/label>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+
+            &lt;/div>
+
+            &lt;div className='row text-warning bg-black text-left m-lg-5 rounded p-lg-2'>
+                &lt;div className='col-12'>
+                    &lt;div className="form-check">
+                        &lt;input className="form-check-input" type="checkbox" name="termsCheck1" onChange={handelTermsCheck1} id="termsCheck1" />
+                        &lt;label className="form-check-label" htmlFor="termsCheck1">
+                            I have read and understood the health and warning statement. By checking this box, I acknowledge and accept the risks
+                            associated with adventure sports and confirm my suitability to participate.
+                        &lt;/label>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className='col-12'>
+                    &lt;div className="form-check">
+                        &lt;input className="form-check-input" type="checkbox" name="termsCheck2" onChange={handelTermsCheck2} id="termsCheck2" />
+                        &lt;label className="form-check-label" htmlFor="termsCheck2">
+                            I agree for Terms &amp; Conditions
+                        &lt;/label>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+
+            &lt;div className='row m-3'>
+                &lt;div className='col-4'>
+                    &lt;button className='btn btn-lg py-3 px-5 bg-black text-warning ' name='main' onClick={handleClick}>&lt;label className='h2'>Back&lt;/label>&lt;/button>
+                &lt;/div>
+                &lt;div className='col-4'>
+                    &lt;button className='btn btn-lg py-3 px-5 bg-black text-warning ' onClick={handleSave} disabled={!termsCheck1 || !termsCheck2} >&lt;label className='h2'>Save&lt;/label>&lt;/button>
+                &lt;/div>
+                &lt;div className='col-4'>
+                    &lt;button className='btn btn-lg py-3 px-5 bg-black text-warning ' onClick={handleBook} disabled={!termsCheck1 || !termsCheck2}>&lt;label className='h2'>Book&lt;/label>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+
+        &lt;/div>
+    )
+};
+
+export default ThrillvillePage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Apr 10 2024 08:48:20 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
