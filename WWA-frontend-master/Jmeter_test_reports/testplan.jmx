@@ -22,7 +22,7 @@
 
             <stringProp name="Argument.name">PUBLIC_IP</stringProp>
 
-            <stringProp name="Argument.value">http://44.203.32.90:3000</stringProp>
+            <stringProp name="Argument.value">https://www.w3schools.com/</stringProp>
 
             <stringProp name="Argument.metadata">=</stringProp>
 
