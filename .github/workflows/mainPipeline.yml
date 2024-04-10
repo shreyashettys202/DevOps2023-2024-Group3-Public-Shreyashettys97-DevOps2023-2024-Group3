@@ -30,11 +30,11 @@ jobs:
       - name: Build Docker Backend Images
         run: |
          cd /home/runner/work/DevOps2023-2024-Group3/DevOps2023-2024-Group3/WWA-backend-master
-         docker build -t wwag3/wednesdaywickedadventures:backend . 
+         docker build -t wwag3/wednesdaywickedadvent:backend . 
       - name: Publish Image to docker Hub
         run: |
           docker push wwag3/wednesdaywickedadventures:latest
-          docker push wwag3/wednesdaywickedadventures:backend
+          docker push wwag3/wednesdaywickedadvent:backend
 
 
   

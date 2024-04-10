@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/parks/UserDetailsPage.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BookingConfirmPage.html">BookingConfirmPage</a></li><li><a href="module-BookingPage.html">BookingPage</a></li><li><a href="module-ForgotPasswordPage.html">ForgotPasswordPage</a></li><li><a href="module-Index.html">Index</a></li><li><a href="module-LoggedInNavbar.html">LoggedInNavbar</a></li><li><a href="module-LoginPage.html">LoginPage</a></li><li><a href="module-MainPage.html">MainPage</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-ParksPage.html">ParksPage</a></li><li><a href="module-SignupPage.html">SignupPage</a></li><li><a href="module-WelcomePage.html">WelcomePage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Printfunction">Printfunction</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/parks/UserDetailsPage.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// /component/parks/UserDetailsPage.js
+/**
+ * @module UserDetailsPage
+ * @description This javascript file is used to show functionality of UserDetails Park Page, used in WWA app.
+ * @prop UserDetailsPage
+ * @function decChildren , handleClick, handleBook, incAdult, decAdult, incChildren, decChildren
+ * @param {Object} params
+ */
+import React, { useState } from "react";
+
+const UserDetailPage = ({ setActiveTemplate, onBook }) => {
+    const [user, setUser] = useState({
+        name: "", email: "", contact: "", address: "", date: "", adult: 1, children: 2,
+    });
+
+    let name, value;
+    const handleChange = (e) => {
+        name = e.target.name;
+        value = e.target.value;
+        setUser({ ...user, [name]: value });
+    }
+
+    const incAdult = () => {
+        setUser({ ...user, 'adult': user.adult + 1 });
+    }
+    const decAdult = () => {
+        setUser({ ...user, 'adult': Math.max(user.adult - 1, 0) });
+    }
+    const incChildren = () => {
+        setUser({ ...user, 'children': user.children + 1 });
+    }
+    const decChildren = () => {
+        setUser({ ...user, 'children': Math.max(user.children - 1, 0) });
+    }
+
+    const handleBook = (e) => {
+        onBook(user);
+    }
+
+
+    return (
+        &lt;div className="container-fluid mt-5 text-warning">
+
+            &lt;div className="row m-5">
+                &lt;h1 className=" h1">User Details&lt;/h1>
+            &lt;/div>
+
+            &lt;div className="container">
+                &lt;div className="h4">
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-4 bg-black rounded ">
+                            &lt;label>Name&lt;/label>
+                        &lt;/div>
+                        &lt;div className="col-8">
+                            &lt;input className=" bg-black rounded w-100 text-center text-warning" value={user.name} name="name" type="text" onChange={handleChange} >&lt;/input>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-4 bg-black rounded ">
+                            &lt;label>Email&lt;/label>
+                        &lt;/div>
+                        &lt;div className="col-8">
+                            &lt;input className=" bg-black rounded w-100 text-center text-warning" value={user.email} name="email" type="email" onChange={handleChange} >&lt;/input>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-4 bg-black rounded ">
+                            &lt;label>Address&lt;/label>
+                        &lt;/div>
+                        &lt;div className="col-8">
+                            &lt;input className=" bg-black rounded w-100 text-center text-warning" value={user.address} name="address" type="text" onChange={handleChange} >&lt;/input>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-4 bg-black rounded ">
+                            &lt;label>Contact&lt;/label>
+                        &lt;/div>
+                        &lt;div className="col-8">
+                            &lt;input className=" bg-black rounded w-100 text-center text-warning" value={user.contact} name="contact" type="number" onChange={handleChange} >&lt;/input>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-4 bg-black rounded ">
+                            &lt;label>Date&lt;/label>
+                        &lt;/div>
+                        &lt;div className="col-8">
+                            &lt;input className=" bg-black rounded w-75 text-center text-warning" value={user.date} name="date" type="date" onChange={handleChange} >&lt;/input>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div className="col-lg-6">
+                            &lt;div className="row m-4">
+                                &lt;div className="col-6 bg-black rounded">
+                                    &lt;label>Adult&lt;/label>
+                                &lt;/div>
+                                &lt;div className="col-6">
+                                    &lt;div className="btn-group" role="group">
+                                        &lt;button type="button" className="btn btn-warning" onClick={decAdult}> - &lt;/button>
+                                        &lt;input className=" bg-black text-warning text-center w-50" name="adult" value={user.adult} onChange={handleChange} type="number" min="1" />
+                                        &lt;button type="button" className="btn btn-warning" onClick={incAdult} > + &lt;/button>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div className="col-lg-6">
+                            &lt;div className="row m-4">
+                                &lt;div className="col-6 bg-black rounded">
+                                    &lt;label>Children&lt;/label>
+                                &lt;/div>
+                                &lt;div className="col-6">
+                                    &lt;div className="btn-group" role="group">
+                                        &lt;button type="button" className="btn btn-warning" onClick={decChildren}> - &lt;/button>
+                                        &lt;input className=" bg-black text-warning text-center w-50" name="children" value={user.children} onChange={handleChange} type="number" min="1" />
+                                        &lt;button type="button" className="btn btn-warning" onClick={incChildren}> + &lt;/button>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+
+                    &lt;div className="row m-4">
+                        &lt;div>
+                            &lt;button className="btn btn-lg  bg-black text-warning w-50" onClick={handleBook}>SUBMIT&lt;/button>
+                        &lt;/div>
+                    &lt;/div>
+
+                &lt;/div>
+
+            &lt;/div>
+
+        &lt;/div>
+    )
+}
+
+export default UserDetailPage;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Apr 10 2024 08:48:20 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
