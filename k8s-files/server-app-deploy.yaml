@@ -13,7 +13,7 @@ spec:
         app: todo-server-app
     spec:
       containers:
-      - image: wwag3/wednesdaywickedadventures:backend
+      - image: wwag3/wednesdaywickedadvent:backend
         name: container1
         ports:
         - containerPort: 5000
