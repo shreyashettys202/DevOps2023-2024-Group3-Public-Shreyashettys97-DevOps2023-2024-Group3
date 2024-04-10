@@ -34,7 +34,7 @@ jobs:
       - name: Publish Image to docker Hub
         run: |
           docker push wwag3/wednesdaywickedadventures:latest
-          docker push wwag3/wednesdaywickedadventures:backend
+          docker push wwag3/wednesdaywickedadvent:backend
 
 
   
