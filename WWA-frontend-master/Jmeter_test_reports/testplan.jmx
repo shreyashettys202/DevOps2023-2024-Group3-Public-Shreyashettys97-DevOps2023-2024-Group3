@@ -22,7 +22,7 @@
 
             <stringProp name="Argument.name">PUBLIC_IP</stringProp>
 
-            <stringProp name="Argument.value">http://3.94.53.205:3000</stringProp>
+            <stringProp name="Argument.value">http://3.239.46.233:3000</stringProp>
 
             <stringProp name="Argument.metadata">=</stringProp>
 
@@ -50,7 +50,7 @@
 
         </elementProp>
 
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">14</stringProp>
 
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
 
