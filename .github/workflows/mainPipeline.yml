@@ -36,7 +36,6 @@ jobs:
           docker push wwag3/wednesdaywickedadventures:latest
           docker push wwag3/wednesdaywickedadvent:backend
 
-
   
   IAC_Build:
     runs-on: ubuntu-latest
